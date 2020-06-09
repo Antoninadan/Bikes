@@ -1,6 +1,5 @@
 package ua.i.mail100.model.bikes;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
@@ -8,7 +7,7 @@ public class ElectroBike extends Bike{
     private Integer speedMaxInKmInHour;
     private Integer batteryCapacityInMAh;
 
-    public ElectroBike(BikeTypeEnum type, String brand, Integer weightInGrams, Boolean isLights, String color, Integer price, Integer speedMaxInKmInHour, Integer batteryCapacityInMAh) {
+    public ElectroBike(BikeType type, String brand, Integer weightInGrams, Boolean isLights, String color, Integer price, Integer speedMaxInKmInHour, Integer batteryCapacityInMAh) {
         super(type, brand, weightInGrams, isLights, color, price);
         this.speedMaxInKmInHour = speedMaxInKmInHour;
         this.batteryCapacityInMAh = batteryCapacityInMAh;

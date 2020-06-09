@@ -9,7 +9,7 @@ public class MechanicBike extends Bike{
     private Integer wheelSizeInInch;
     private Integer gearNumber;
 
-    public MechanicBike(BikeTypeEnum type, String brand, Integer weightInGrams, Boolean isLights, String color, Integer price, Integer wheelSizeInInch, Integer gearNumber) {
+    public MechanicBike(BikeType type, String brand, Integer weightInGrams, Boolean isLights, String color, Integer price, Integer wheelSizeInInch, Integer gearNumber) {
         super(type, brand, weightInGrams, isLights, color, price);
         this.wheelSizeInInch = wheelSizeInInch;
         this.gearNumber = gearNumber;

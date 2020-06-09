@@ -1,6 +1,6 @@
 package ua.i.mail100.model.bikes;
 
-public enum BikeTypeEnum {
+public enum BikeType {
     FOLDING_BIKE {
         @Override
         public String toString() {

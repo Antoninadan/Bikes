@@ -1,7 +1,7 @@
 package ua.i.mail100;
 
 import ua.i.mail100.model.bikes.BikeCollection;
-import ua.i.mail100.model.bikes.BikeTypeEnum;
+import ua.i.mail100.model.bikes.BikeType;
 import ua.i.mail100.model.bikes.ElectroBike;
 import ua.i.mail100.model.bikes.MechanicBike;
 
@@ -14,22 +14,22 @@ public class App {
     public static final String LINE_SEP = System.getProperty("line.separator");
     private static final int SHOW_BIKES_PER_PAGE = 5;
 
-    public static void main(String[] args) throws IOException, InterruptedException{
-        ElectroBike electroBike1 = new ElectroBike(BikeTypeEnum.E_BIKE, "brand1", 45234,
+    public static void main(String[] args) throws IOException, InterruptedException {
+        ElectroBike electroBike1 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 1231, 123, 123);
-        ElectroBike electroBike2 = new ElectroBike(BikeTypeEnum.E_BIKE, "brand1", 45234,
+        ElectroBike electroBike2 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 1231, 123, 123);
-        MechanicBike mechanicBike1 = new MechanicBike(BikeTypeEnum.FOLDING_BIKE, "brand1", 45234,
+        MechanicBike mechanicBike1 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 45234,
                 false, "rose", 1231, 123, 123);
-        MechanicBike mechanicBike2 = new MechanicBike(BikeTypeEnum.FOLDING_BIKE, "brand1", 452888834,
+        MechanicBike mechanicBike2 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 452888834,
                 false, "rose", 1231, 123, 123);
-        ElectroBike electroBike3 = new ElectroBike(BikeTypeEnum.E_BIKE, "brand1", 45234,
+        ElectroBike electroBike3 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 1231, 123, 123);
-        ElectroBike electroBike4 = new ElectroBike(BikeTypeEnum.E_BIKE, "brand1", 45234,
+        ElectroBike electroBike4 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 1231, 123, 123);
-        MechanicBike mechanicBike3 = new MechanicBike(BikeTypeEnum.FOLDING_BIKE, "brand1", 45234,
+        MechanicBike mechanicBike3 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 45234,
                 false, "rose", 1231, 123, 123);
-        MechanicBike mechanicBike4 = new MechanicBike(BikeTypeEnum.FOLDING_BIKE, "brand1", 452888834,
+        MechanicBike mechanicBike4 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 452888834,
                 false, "rose", 1231, 123, 123);
 
 
@@ -59,27 +59,38 @@ public class App {
             try {
                 Integer command = Integer.parseInt(bufferedReader.readLine());
 
-                if (command == 1) {showBikesPerPages(savedBikes);}
-                else if (command == 2) {System.out.println("Add a new folding bike");}
-                else if (command == 3) {System.out.println("Add a new speedelec");}
-                else if (command == 4) {System.out.println("Add a new e-bike");}
-                else if (command == 5) {System.out.println("Add a new e-bike");}
-                else if (command == 6) {System.out.println("Write to file");}
-                else if (command == 7) {System.out.println("Find all bikes by criteria");}
-                else if (command == 8) return;
+                if (command == 1) {
+                    showBikesPerPages(savedBikes);
+                } else if (command == 2) {
+                    System.out.println("Add a new folding bike");
+                } else if (command == 3) {
+                    System.out.println("Add a new speedelec");
+                } else if (command == 4) {
+                    System.out.println("Add a new e-bike");
+                } else if (command == 5) {
+                    System.out.println("Add a new e-bike");
+                } else if (command == 6) {
+                    System.out.println("Write to file");
+                } else if (command == 7) {
+                    System.out.println("Find all bikes by criteria");
+                } else if (command == 8) return;
             } catch (NumberFormatException e) {
                 System.out.println("Bad command");
             }
         }
     }
+
     private static void showBikesPerPages(BikeCollection bikes) throws IOException {
         List<BikeCollection> bikeCollectionList = bikes.divideListPerRecords(SHOW_BIKES_PER_PAGE);
         int count = 0;
 
         while (true) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            if (bikeCollectionList.size() - 1 >= count) bikeCollectionList.get(count).print();
-            else return;
+            if (bikeCollectionList.size() - 1 >= count) {
+                bikeCollectionList.get(count).print();
+            } else {
+                return;
+            }
             System.out.println(LINE_SEP + "Press any key to continue ");
             bufferedReader.readLine();
             count++;

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Bike {
-    protected BikeTypeEnum type;
+    protected BikeType type;
     protected String brand;
     protected Integer weightInGrams;
     protected Boolean isLights;
