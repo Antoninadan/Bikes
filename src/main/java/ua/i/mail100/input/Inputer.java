@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// TODO change to regex
 public class Inputer {
     private String question;
     private InputedType type;

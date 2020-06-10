@@ -1,8 +1,6 @@
 package ua.i.mail100.testservice;
 
 import ua.i.mail100.input.ElectroBikeInputer;
-import ua.i.mail100.input.InputedType;
-import ua.i.mail100.input.Inputer;
 
 import java.io.IOException;
 

@@ -23,10 +23,7 @@ public class BikeCollection {
     }
 
     public void print() {
-        // TODO bikes.forEach(it -> System.out.println(it));
-        for (Bike each : bikes) {
-            System.out.println(each);
-        }
+        bikes.forEach(it -> System.out.println(it));
     }
 
     public List<BikeCollection> dividePerParts(int parts) {

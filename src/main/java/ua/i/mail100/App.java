@@ -1,5 +1,7 @@
 package ua.i.mail100;
 
+import ua.i.mail100.input.ElectroBikeInputer;
+import ua.i.mail100.input.MechanikBikeInputer;
 import ua.i.mail100.model.bikes.BikeCollection;
 import ua.i.mail100.model.bikes.BikeType;
 import ua.i.mail100.model.bikes.ElectroBike;
@@ -45,9 +47,10 @@ public class App {
         savedBikes.appent(mechanicBike4);
 
         BikeCollection newBikes = new BikeCollection();
+
         while (true) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("\n" +
+            System.out.println(LINE_SEP +
                     "1 - Show the entire EcoBike catalog (per " + SHOW_BIKES_PER_PAGE + " records)" + LINE_SEP +
                     "2 – Add a new folding bike" + LINE_SEP +
                     "3 – Add a new speedelec" + LINE_SEP +
@@ -62,11 +65,11 @@ public class App {
                 if (command == 1) {
                     showBikesPerPages(savedBikes);
                 } else if (command == 2) {
-                    System.out.println("Add a new folding bike");
+                    newBikes.appent(MechanikBikeInputer.inputFoldingBike());
                 } else if (command == 3) {
-                    System.out.println("Add a new speedelec");
+                    newBikes.appent(ElectroBikeInputer.inputSpeedelec());
                 } else if (command == 4) {
-                    System.out.println("Add a new e-bike");
+                    newBikes.appent(ElectroBikeInputer.inputEBike());
                 } else if (command == 5) {
                     System.out.println("Add a new e-bike");
                 } else if (command == 6) {
