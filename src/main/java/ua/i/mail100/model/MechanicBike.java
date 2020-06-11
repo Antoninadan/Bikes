@@ -89,12 +89,23 @@ public class MechanicBike extends Bike {
         MechanicBike other = (MechanicBike) obj;
         if (!type.equals(other.type)) return false;
         if (!brand.equals(other.brand)) return false;
-        if (!wheelSizeInInch.equals(other.wheelSizeInInch)) return false;
-        if (!gearNumber.equals(other.gearNumber)) return false;
-        if (!weightInGrams.equals(other.weightInGrams)) return false;
-        if (!isLights.equals(other.isLights)) return false;
+
+        if ((wheelSizeInInch != null) && (!wheelSizeInInch.equals(other.wheelSizeInInch))) return false;
+        if ((wheelSizeInInch == null) && (other.wheelSizeInInch != null)) return false;
+
+        if ((gearNumber != null) && (!gearNumber.equals(other.gearNumber))) return false;
+        if ((gearNumber == null) && (other.gearNumber != null)) return false;
+
+        if ((weightInGrams != null) && (!weightInGrams.equals(other.weightInGrams))) return false;
+        if ((weightInGrams == null) && (other.weightInGrams != null)) return false;
+
+        if ((isLights != null) && (!isLights.equals(other.isLights))) return false;
+        if ((isLights == null) && (other.isLights != null)) return false;
+
         if (!color.equals(other.color)) return false;
-        if (!price.equals(other.price)) return false;
+
+        if ((price != null) && (!price.equals(other.price))) return false;
+        if ((price == null) && (other.price != null)) return false;
         return true;
     }
 

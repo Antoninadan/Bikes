@@ -1,10 +1,8 @@
 package ua.i.mail100.testservice;
 
-import ua.i.mail100.model.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;
-import ua.i.mail100.util.FileUtil;
 
 import java.io.IOException;
 
@@ -57,6 +55,7 @@ public class TestEqual {
 
         System.out.println(bike1.hashCode());
         System.out.println(bike4.hashCode());
+
 
 
         System.out.println();

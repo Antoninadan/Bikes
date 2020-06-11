@@ -1,6 +1,6 @@
 package ua.i.mail100.service;
 
-import ua.i.mail100.model.BikeCollection;
+import ua.i.mail100.modelcontainer.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;

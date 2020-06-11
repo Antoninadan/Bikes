@@ -1,0 +1,14 @@
+E-BIKE brand1; 123; 45234; true; 123; rose; 1
+E-BIKE brand1; 123; 45234; true; 123; rose; 2
+E-BIKE brand1; 123; 45234; true; 123; rose; 3
+E-BIKE brand1; 123; 45234; true; 123; rose; 4
+E-BIKE brand1; 123; 45234; true; 123; rose; 5
+E-BIKE brand1; 123; 45234; true; 123; rose; 6
+E-BIKE brand1; 123; 45234; true; 123; rose; 100
+FOLDING BIKE brand1; 123; 123; 45234; false; rose; 101
+E-BIKE brand1; 123; 45234; true; 123; rose; 100
+FOLDING BIKE brand1; 123; 123; 45234; false; rose; 101
+E-BIKE brand1; 123; 45234; true; 123; rose; 100
+FOLDING BIKE brand1; 123; 123; 45234; false; rose; 101
+E-BIKE brand1; 123; 45234; true; 123; rose; 100
+FOLDING BIKE brand1; 123; 123; 45234; false; rose; 101

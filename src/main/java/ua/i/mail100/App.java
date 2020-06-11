@@ -3,7 +3,9 @@ package ua.i.mail100;
 import ua.i.mail100.input.ElectroBikeInputer;
 import ua.i.mail100.input.MechanikBikeInputer;
 import ua.i.mail100.model.*;
+import ua.i.mail100.modelcontainer.BikeCollection;
 import ua.i.mail100.service.BikeParser;
+import ua.i.mail100.service.SearchService;
 import ua.i.mail100.util.FileUtil;
 
 import java.io.BufferedReader;
@@ -52,7 +54,7 @@ public class App {
                 } else if (command == 4) {
                     newBikes.append(ElectroBikeInputer.inputEBike());
                 } else if (command == 5) {
-                    showFirstBikeByСonditions(savedBikes);
+                    showFirstBikeByCriterion(savedBikes);
                 } else if (command == 6) {
                     FileUtil.appendFile(newBikes.getListForWrite(), FILES_DIR, fileName);
                     savedBikes = savedBikes.union(newBikes);
@@ -82,39 +84,44 @@ public class App {
     }
 
     // TODO not null brand
-    // TODO add search
-    private static void showFirstBikeByСonditions(BikeCollection bikes) throws IOException, InterruptedException {
+    private static void showFirstBikeByCriterion(BikeCollection bikes) throws IOException, InterruptedException {
         while (true) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("1 - Input folding bike parameters" + LINE_SEP +
                     "2 – Input speedelec bike parameters" + LINE_SEP +
                     "3 – Input e-bike bike parameters" + LINE_SEP);
-            Bike searcher;
+            Bike criterion;
             try {
                 Integer command = Integer.parseInt(bufferedReader.readLine());
                 if (command == 1) {
-                    searcher = MechanikBikeInputer.inputFoldingBike();
-                    showСonditionAndResult(searcher);
+                    criterion = MechanikBikeInputer.inputFoldingBike();
+                    showCriterionAndOneFinded(bikes, criterion);
                     return;
                 } else if (command == 2) {
-                    searcher = ElectroBikeInputer.inputSpeedelec();
-                    showСonditionAndResult(searcher);
+                    criterion = ElectroBikeInputer.inputSpeedelec();
+                    showCriterionAndOneFinded(bikes, criterion);
                     return;
                 } else if (command == 3) {
-                    searcher = ElectroBikeInputer.inputEBike();
-                    showСonditionAndResult(searcher);
+                    criterion = ElectroBikeInputer.inputEBike();
+                    showCriterionAndOneFinded(bikes, criterion);
                     return;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Bad command");
             }
+
         }
     }
 
-    public static void showСonditionAndResult(Bike searcher) {
-        System.out.println("Your search parameters:" + LINE_SEP + searcher);
-        System.out.println("Results: ");
-        Bike searchedBike = searcher;
-        System.out.println(searchedBike);
+    public static void showCriterionAndOneFinded(BikeCollection bikes, Bike criterion) {
+        SearchService searchService = new SearchService(bikes);
+        System.out.println("Your search parameters:" + LINE_SEP + criterion);
+        Bike finded = searchService.findOneSimilarTo(criterion);
+        if (finded != null) {
+            System.out.println("Results: ");
+            finded.toString();
+        } else {
+            System.out.println("Results: 0");
+        }
     }
 }

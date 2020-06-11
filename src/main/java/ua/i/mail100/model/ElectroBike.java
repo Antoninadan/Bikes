@@ -87,12 +87,23 @@ public class ElectroBike extends Bike {
         ElectroBike other = (ElectroBike) obj;
         if (!type.equals(other.type)) return false;
         if (!brand.equals(other.brand)) return false;
-        if (!speedMaxInKmInHour.equals(other.speedMaxInKmInHour)) return false;
-        if (!batteryCapacityInMAh.equals(other.batteryCapacityInMAh)) return false;
-        if (!weightInGrams.equals(other.weightInGrams)) return false;
-        if (!isLights.equals(other.isLights)) return false;
+
+        if ((speedMaxInKmInHour != null) && (!speedMaxInKmInHour.equals(other.speedMaxInKmInHour))) return false;
+        if ((speedMaxInKmInHour == null) && (other.speedMaxInKmInHour != null)) return false;
+
+        if ((batteryCapacityInMAh != null) && (!batteryCapacityInMAh.equals(other.batteryCapacityInMAh))) return false;
+        if ((batteryCapacityInMAh == null) && (other.batteryCapacityInMAh != null)) return false;
+
+        if ((weightInGrams != null) && (!weightInGrams.equals(other.weightInGrams))) return false;
+        if ((weightInGrams == null) && (other.weightInGrams != null)) return false;
+
+        if ((isLights != null) && (!isLights.equals(other.isLights))) return false;
+        if ((isLights == null) && (other.isLights != null)) return false;
+
         if (!color.equals(other.color)) return false;
-        if (!price.equals(other.price)) return false;
+
+        if ((price != null) && (!price.equals(other.price))) return false;
+        if ((price == null) && (other.price != null)) return false;
         return true;
     }
 

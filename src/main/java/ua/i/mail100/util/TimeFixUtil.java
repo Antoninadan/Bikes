@@ -13,7 +13,6 @@ public class TimeFixUtil {
     }
 
     public void elapsedTimePrint() {
-        long now = System.currentTimeMillis();
-        System.out.println("Elapsed time = " + (now - start));
+        System.out.println("Elapsed time = " + elapsedTime());
     }
 }

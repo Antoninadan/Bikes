@@ -20,7 +20,6 @@ public class ElectroBikeInputer {
     }
 
     private static ElectroBike input() throws IOException {
-        ElectroBike electroBike = null;
         String brand = new Inputer("Input brand", InputedType.STRING).input();
         Integer weightInGrams = new Inputer("Input weightInGrams", InputedType.INTEGER).input();
         Boolean isLights = new Inputer("Input isLights: true=1, false=0", InputedType.BOOLEAN).input();

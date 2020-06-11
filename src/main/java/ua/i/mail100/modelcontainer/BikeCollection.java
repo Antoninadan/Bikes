@@ -1,12 +1,11 @@
-package ua.i.mail100.model;
+package ua.i.mail100.modelcontainer;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ua.i.mail100.model.Bike;
+import ua.i.mail100.model.BikeType;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 //TODO  delete from model
@@ -14,13 +13,23 @@ import java.util.Set;
 @NoArgsConstructor
 public class BikeCollection {
     List<Bike> bikes = new ArrayList<>();
+    HashSet<Bike> foldingBikeHashSet = new HashSet<>();
+    HashSet<Bike> spedelecBikeHashSet = new HashSet<>();
+    HashSet<Bike> eBikeHashSet = new HashSet<>();
 
-    public Bike get(int count){
-        return bikes.get(count);
+    public BikeCollection(Collection<Bike> bikeCollection){
+        bikeCollection.forEach(x -> this.append(x));
+    }
+
+    public Bike get(int index){
+        return bikes.get(index);
     }
 
     public BikeCollection append(Bike bike){
         bikes.add(bike);
+        if (bike.getType() == BikeType.FOLDING_BIKE) {foldingBikeHashSet.add(bike);}
+        if (bike.getType() == BikeType.SPEEDELEC) {spedelecBikeHashSet.add(bike);}
+        if (bike.getType() == BikeType.E_BIKE) {eBikeHashSet.add(bike);}
         return this;
     }
 
@@ -49,6 +58,7 @@ public class BikeCollection {
         bikes.clear();
     }
 
+    // TODO https://habr.com/ru/post/267389/
     public List<BikeCollection> dividePerParts(int parts) {
         int size = bikes.size();
         int[][] indexesOfParts = getIndexesPerParts(size, parts);

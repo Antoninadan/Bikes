@@ -11,6 +11,7 @@ class MechanicBikeTest {
     MechanicBike bike3;
     MechanicBike bike4;
     MechanicBike bike5;
+    MechanicBike bike6;
 
     @BeforeEach
     void setUp() {
@@ -24,7 +25,8 @@ class MechanicBikeTest {
                 null, "", null, null, null);
         bike5 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", null,
                 null, "", null, null, null);
-
+        bike6 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 45234,
+                false, "rose", 11, null, 123);
     }
 
     @Test
@@ -33,11 +35,15 @@ class MechanicBikeTest {
         assertNotEquals(bike1, bike3);
         assertNotEquals(bike1, bike4);
         assertEquals(bike4, bike5);
+        assertNotEquals(bike6, bike1);
+        assertNotEquals(bike1, bike6);
+
 
         assertEquals(bike1.hashCode(), bike2.hashCode());
         assertNotEquals(bike1.hashCode(), bike3.hashCode());
         assertNotEquals(bike1.hashCode(), bike4.hashCode());
         assertEquals(bike4.hashCode(), bike5.hashCode());
+        assertNotEquals(bike1.hashCode(), bike6.hashCode());
     }
 
     //TODO hashCode
@@ -55,5 +61,8 @@ class MechanicBikeTest {
 
         assertTrue(bike4.similar(bike5));
         assertTrue(bike5.similar(bike4));
+
+        assertTrue(bike1.similar(bike6));
+        assertTrue(bike6.similar(bike1));
     }
 }

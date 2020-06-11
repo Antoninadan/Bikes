@@ -44,7 +44,7 @@ public class Inputer {
                 String line = bufferedReader.readLine();
                 result = (line.length() > 0) ? Integer.parseInt(line) : null;
             } catch (NumberFormatException e) {
-                System.out.println("Bad command");
+                System.out.println("Bad format - input integer e.g. 10");
             } catch (NullPointerException e) {
                 return result;
             }
@@ -67,7 +67,7 @@ public class Inputer {
                 } else if (result == 1) resultReturn = true;
                 else resultReturn = false;
             } catch (NumberFormatException e) {
-                System.out.println("Bad command");
+                System.out.println("Bad command - true = 1, false = 0");
             } catch (NullPointerException e) {
                 return resultReturn;
             }
