@@ -1,6 +1,9 @@
 package ua.i.mail100.testservice;
 
-import ua.i.mail100.model.bikes.*;
+import ua.i.mail100.model.BikeCollection;
+import ua.i.mail100.model.BikeType;
+import ua.i.mail100.model.ElectroBike;
+import ua.i.mail100.model.MechanicBike;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,26 +32,24 @@ public class TestDevide {
                 false, "rose", 1231, 123, 123);
 
         BikeCollection bikeCollection = new BikeCollection();
-        bikeCollection.appent(electroBike1);
-        bikeCollection.appent(electroBike2);
-        bikeCollection.appent(electroBike3);
-        bikeCollection.appent(electroBike4);
-        bikeCollection.appent(mechanicBike1);
-        bikeCollection.appent(mechanicBike2);
-        bikeCollection.appent(mechanicBike3);
-        bikeCollection.appent(mechanicBike4);
+        bikeCollection.append(electroBike1);
+        bikeCollection.append(electroBike2);
+        bikeCollection.append(electroBike3);
+        bikeCollection.append(electroBike4);
+        bikeCollection.append(mechanicBike1);
+        bikeCollection.append(mechanicBike2);
+        bikeCollection.append(mechanicBike3);
+        bikeCollection.append(mechanicBike4);
 
 
         bikeCollection.print();
         System.out.println();
 
         List<BikeCollection> bikeCollectionList = bikeCollection.dividePerParts(3);
-        for(BikeCollection each:bikeCollectionList){
+        for (BikeCollection each : bikeCollectionList) {
             each.print();
             System.out.println();
         }
-
-
 
 
     }

@@ -1,4 +1,4 @@
-package ua.i.mail100.model.bikes;
+package ua.i.mail100.model;
 
 public enum BikeType {
     FOLDING_BIKE {

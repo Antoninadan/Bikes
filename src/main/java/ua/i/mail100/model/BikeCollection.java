@@ -1,10 +1,12 @@
-package ua.i.mail100.model.bikes;
+package ua.i.mail100.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 //TODO  delete from model
@@ -17,13 +19,34 @@ public class BikeCollection {
         return bikes.get(count);
     }
 
-    public BikeCollection appent(Bike bike){
+    public BikeCollection append(Bike bike){
         bikes.add(bike);
         return this;
     }
 
     public void print() {
         bikes.forEach(it -> System.out.println(it));
+    }
+
+    public List<String> getListForWrite() {
+        List<String> result = new ArrayList<>();
+        bikes.forEach(it -> result.add(it.toStringForWrite()));
+        return result;
+    }
+
+    public BikeCollection union(BikeCollection other){
+        BikeCollection result = new BikeCollection();
+
+        Set<Bike> set = new HashSet<>();
+        set.addAll(this.bikes);
+        set.addAll(other.getBikes());
+
+         result.setBikes(new ArrayList<Bike>(set));
+        return result;
+    }
+
+    public void clear(){
+        bikes.clear();
     }
 
     public List<BikeCollection> dividePerParts(int parts) {
@@ -34,7 +57,7 @@ public class BikeCollection {
         for (int i = 0; i < parts; i++) {
             BikeCollection temp = new BikeCollection();
             for (int j = indexesOfParts[i][0]; j <= indexesOfParts[i][1]; j++) {
-                temp.appent(this.get(j));
+                temp.append(this.get(j));
             }
             result.add(temp);
         }
@@ -49,7 +72,7 @@ public class BikeCollection {
         for (int i = 0; i < div; i++) {
             BikeCollection temp = new BikeCollection();
             for (int j = i * records; j < Math.min(size, i * records + records); j++) {
-                temp.appent(this.get(j));
+                temp.append(this.get(j));
             }
             result.add(temp);
         }

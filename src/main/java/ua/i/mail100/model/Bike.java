@@ -1,4 +1,4 @@
-package ua.i.mail100.model.bikes;
+package ua.i.mail100.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,4 +14,8 @@ public abstract class Bike {
     protected Boolean isLights;
     protected String color;
     protected Integer price;
+
+    public abstract String toString();
+    public abstract String toStringForWrite();
+    public abstract boolean similar(Bike bike);
 }

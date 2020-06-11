@@ -1,7 +1,7 @@
 package ua.i.mail100.input;
 
-import ua.i.mail100.model.bikes.BikeType;
-import ua.i.mail100.model.bikes.MechanicBike;
+import ua.i.mail100.model.BikeType;
+import ua.i.mail100.model.MechanicBike;
 
 import java.io.IOException;
 
