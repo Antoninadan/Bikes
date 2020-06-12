@@ -1,6 +1,7 @@
 package ua.i.mail100.model;
 
 import lombok.Data;
+import ua.i.mail100.settings.Settings;
 
 @Data
 public class ElectroBike extends Bike {
@@ -13,7 +14,6 @@ public class ElectroBike extends Bike {
         this.batteryCapacityInMAh = batteryCapacityInMAh;
     }
 
-    @Override
     public String toString() {
         String lightsInfo = (isLights != null) ? (isLights ? " and head/tail light" : " and no head/tail light") : "";
         String brandInfo = (brand != null) ? brand : "";
@@ -24,11 +24,11 @@ public class ElectroBike extends Bike {
                 brandInfo +
                 batteryCapacityInMAhInfo +
                 lightsInfo +
-                "." + "\n" +
+                "." + Settings.LINE_SEP +
                 priceInfo;
     }
 
-    @Override
+
     public String toStringForWrite() {
         return type.toString() + " " +
                 brand + "; " +
@@ -65,7 +65,7 @@ public class ElectroBike extends Bike {
             temp = isLights.hashCode();
             result = prime * result + (int) (temp ^ (temp >>> 32));
         }
-        if (color.length() != 0) {
+        if (!color.isEmpty()) {
             temp = color.hashCode();
             result = prime * result + (int) (temp ^ (temp >>> 32));
         }
@@ -130,14 +130,12 @@ public class ElectroBike extends Bike {
         if ((isLights != null)
                 && (other.isLights != null)
                 && (!isLights.equals(other.isLights))) return false;
-        if ((color.length() != 0)
-                && (other.color.length() != 0)
+        if ((!color.isEmpty())
+                && (!other.color.isEmpty())
                 && (!color.equals(other.color))) return false;
         if ((price != null)
                 && (other.price != null)
                 && (!price.equals(other.price))) return false;
         return true;
-
-
     }
 }

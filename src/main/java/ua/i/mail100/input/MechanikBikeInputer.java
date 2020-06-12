@@ -14,7 +14,7 @@ public class MechanikBikeInputer {
     }
 
     private static MechanicBike input() throws IOException {
-        String brand = new Inputer("Input brand", InputedType.STRING).input();
+        String brand = new Inputer("Input brand", InputedType.STRING_NOT_EMPTY).input();
         Integer weightInGrams = new Inputer("Input weightInGrams", InputedType.INTEGER).input();
         Boolean isLights = new Inputer("Input isLights: true = 1, false = 0", InputedType.BOOLEAN).input();
         String color = new Inputer("Input color", InputedType.STRING).input();

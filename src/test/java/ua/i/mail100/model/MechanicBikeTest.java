@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MechanicBikeTest {
+    private static final String LINE_SEP = System.getProperty("line.separator");
+
     MechanicBike bike1;
     MechanicBike bike2;
     MechanicBike bike3;
@@ -37,16 +39,16 @@ class MechanicBikeTest {
         assertEquals(bike4, bike5);
         assertNotEquals(bike6, bike1);
         assertNotEquals(bike1, bike6);
+    }
 
-
+    @Test
+    void hashCodeTest() {
         assertEquals(bike1.hashCode(), bike2.hashCode());
         assertNotEquals(bike1.hashCode(), bike3.hashCode());
         assertNotEquals(bike1.hashCode(), bike4.hashCode());
         assertEquals(bike4.hashCode(), bike5.hashCode());
         assertNotEquals(bike1.hashCode(), bike6.hashCode());
     }
-
-    //TODO hashCode
 
     @Test
     void similar() {
@@ -64,5 +66,20 @@ class MechanicBikeTest {
 
         assertTrue(bike1.similar(bike6));
         assertTrue(bike6.similar(bike1));
+    }
+
+    @Test
+    void toStringTest() {
+        String expected = "FOLDING BIKE brand1 with 123 gear(s) and no head/tail light." + LINE_SEP +
+                "Price: 11 euros.";
+        String actual = bike1.toString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void toStringForWrite() {
+        String expected = "FOLDING BIKE brand1; 123; 123; 45234; false; rose; 11";
+        String actual = bike1.toStringForWrite();
+        assertEquals(expected, actual);
     }
 }

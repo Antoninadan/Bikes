@@ -15,7 +15,6 @@ public abstract class Bike {
     protected String color;
     protected Integer price;
 
-    public abstract String toString();
     public abstract String toStringForWrite();
     public abstract boolean similar(Bike bike);
 }

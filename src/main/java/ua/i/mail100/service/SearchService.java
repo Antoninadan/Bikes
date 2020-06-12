@@ -1,7 +1,7 @@
 package ua.i.mail100.service;
 
 import ua.i.mail100.model.Bike;
-import ua.i.mail100.modelcontainer.BikeCollection;
+import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 
 import java.util.HashSet;

@@ -1,12 +1,11 @@
 package ua.i.mail100.testservice;
 
-import ua.i.mail100.modelcontainer.BikeCollection;
+import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;
 
 import java.io.IOException;
-import java.util.List;
 
 public class TestDevide {
     private static final String MAIN_DIR = System.getProperty("user.dir");
@@ -45,11 +44,7 @@ public class TestDevide {
         bikeCollection.print();
         System.out.println();
 
-        List<BikeCollection> bikeCollectionList = bikeCollection.dividePerParts(3);
-        for (BikeCollection each : bikeCollectionList) {
-            each.print();
-            System.out.println();
-        }
+
 
 
     }

@@ -1,7 +1,7 @@
 package ua.i.mail100.testservice;
 
 import ua.i.mail100.model.Bike;
-import ua.i.mail100.modelcontainer.BikeCollection;
+import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.service.BikeParser;
@@ -23,7 +23,7 @@ public class TestSearch {
         ElectroBike criterion = new ElectroBike(BikeType.SPEEDELEC, "Ferrari", null,
                 null, "uniq_color", null, null, null);
 
-        List<String> readedFileStrings = FileUtil.readFile(FILES_DIR, "test2.txt");
+        List<String> readedFileStrings = FileUtil.read(FILES_DIR, "test2.txt");
         BikeCollection savedBikes = BikeParser.parse(readedFileStrings);
 
         SearchService searchService = new SearchService(savedBikes);

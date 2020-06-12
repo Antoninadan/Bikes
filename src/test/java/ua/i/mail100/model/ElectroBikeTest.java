@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ElectroBikeTest {
+    private static final String LINE_SEP = System.getProperty("line.separator");
+
     ElectroBike bike1;
     ElectroBike bike2;
     ElectroBike bike3;
@@ -17,13 +19,13 @@ class ElectroBikeTest {
 
     @BeforeEach
     void setUp() {
-         bike1 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
+        bike1 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 11, 123, 123);
-         bike2 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
+        bike2 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 11, 123, 123);
-         bike3 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
+        bike3 = new ElectroBike(BikeType.E_BIKE, "brand1", 45234,
                 true, "rose", 12, 123, 123);
-         bike4 = new ElectroBike(BikeType.E_BIKE, "brand1", null,
+        bike4 = new ElectroBike(BikeType.E_BIKE, "brand1", null,
                 null, "", null, null, null);
         bike5 = new ElectroBike(BikeType.E_BIKE, "brand1", null,
                 null, "", null, null, null);
@@ -39,16 +41,16 @@ class ElectroBikeTest {
         assertEquals(bike4, bike5);
         assertNotEquals(bike6, bike1);
         assertNotEquals(bike1, bike6);
+    }
 
-
+    @Test
+    void hashCodeTest() {
         assertEquals(bike1.hashCode(), bike2.hashCode());
         assertNotEquals(bike1.hashCode(), bike3.hashCode());
         assertNotEquals(bike1.hashCode(), bike4.hashCode());
         assertEquals(bike4.hashCode(), bike5.hashCode());
         assertNotEquals(bike1.hashCode(), bike6.hashCode());
     }
-
-    //TODO hashCode
 
     @Test
     void similar() {
@@ -66,5 +68,21 @@ class ElectroBikeTest {
 
         assertTrue(bike1.similar(bike6));
         assertTrue(bike6.similar(bike1));
+    }
+
+
+    @Test
+    void toStringTest() {
+        String expected = "E-BIKE brand1 with 123 mAh battery and head/tail light." + LINE_SEP +
+                "Price: 11 euros.";
+        String actual = bike1.toString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void toStringForWrite() {
+        String expected = "E-BIKE brand1; 123; 45234; true; 123; rose; 11";
+        String actual = bike1.toStringForWrite();
+        assertEquals(expected, actual);
     }
 }

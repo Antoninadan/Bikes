@@ -1,10 +1,11 @@
 package ua.i.mail100.input;
 
+import ua.i.mail100.settings.Settings;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// TODO change to regex
 public class Inputer {
     private String question;
     private InputedType type;
@@ -19,6 +20,7 @@ public class Inputer {
 
         if (type == InputedType.INTEGER) return (T) inputInteger();
         if (type == InputedType.STRING) return (T) inputString();
+        if (type == InputedType.STRING_NOT_EMPTY) return (T) inputStringNotEmpty();
         if (type == InputedType.BOOLEAN) return (T) inputBoolean();
 
         return input;
@@ -26,7 +28,7 @@ public class Inputer {
 
     private String inputString() throws IOException {
         String result = null;
-        System.out.println(question + "\n");
+        System.out.println(question + Settings.LINE_SEP);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         while (result == null) {
             result = bufferedReader.readLine();
@@ -34,12 +36,24 @@ public class Inputer {
         return result;
     }
 
+    private String inputStringNotEmpty() throws IOException {
+        String result = new String();
+        System.out.println(question + Settings.LINE_SEP);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        while (result.isEmpty()) {
+            result = bufferedReader.readLine();
+            if (result.isEmpty()) {
+                System.out.println("Value must be filled");
+            }
+        }
+        return result;
+    }
 
     private Integer inputInteger() throws IOException {
         Integer result = -Integer.MAX_VALUE;
         while (result != null && result == -Integer.MAX_VALUE) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(question + "\n");
+            System.out.println(question + Settings.LINE_SEP);
             try {
                 String line = bufferedReader.readLine();
                 result = (line.length() > 0) ? Integer.parseInt(line) : null;
@@ -57,7 +71,7 @@ public class Inputer {
         Integer result = -Integer.MAX_VALUE;
         while (result != null && result == -Integer.MAX_VALUE) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(question + "\n");
+            System.out.println(question + Settings.LINE_SEP);
             try {
                 String line = bufferedReader.readLine();
                 result = (line.length() > 0) ? Integer.parseInt(line) : null;

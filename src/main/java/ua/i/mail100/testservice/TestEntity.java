@@ -1,6 +1,6 @@
 package ua.i.mail100.testservice;
 
-import ua.i.mail100.modelcontainer.BikeCollection;
+import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;
@@ -43,7 +43,7 @@ public class TestEntity {
         BikeCollection newBikes = new BikeCollection();
         newBikes.append(electroBike3);
         newBikes.append(mechanicBike3);
-        FileUtil.appendFile(newBikes.getListForWrite(), FILES_DIR,"append.txt");
+        FileUtil.appendTo(newBikes.getListForWrite(), FILES_DIR,"append.txt");
 
 
         oldBikes = oldBikes.union(newBikes);
@@ -52,6 +52,11 @@ public class TestEntity {
         System.out.println("--------newBikes");
         newBikes.clear();
         newBikes.print();
+
+        MechanicBike bike1 = new MechanicBike(BikeType.FOLDING_BIKE, "brand1", 45234,
+                false, "rose", 11, 123, 123);
+        System.out.println(bike1);
+        System.out.println(bike1.toStringForWrite());
 
     }
 }
