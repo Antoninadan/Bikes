@@ -5,7 +5,10 @@ import lombok.NoArgsConstructor;
 import ua.i.mail100.model.Bike;
 import ua.i.mail100.model.BikeType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -75,6 +78,36 @@ public class BikeCollection {
             result.add(temp);
         }
         return result;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp = 0;
+
+        for (Bike each : bikes) {
+            temp += each.hashCode();
+        }
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        BikeCollection other = (BikeCollection) obj;
+        List<Bike> otherBikes = other.getBikes();
+
+        if (!bikes.containsAll(otherBikes)) return false;
+        if (!otherBikes.containsAll(bikes)) return false;
+        return true;
     }
 }
 

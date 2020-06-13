@@ -1,6 +1,7 @@
 package ua.i.mail100.representative;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.i.mail100.model.BikeType;
@@ -9,6 +10,7 @@ import ua.i.mail100.model.MechanicBike;
 
 import java.util.List;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -129,5 +131,57 @@ class BikeCollectionTest {
 
         assertEquals(eBike2, dividedCollections.get(2).getBikes().get(0));
         assertEquals(eBike3, dividedCollections.get(2).getBikes().get(1));
+    }
+
+    @Test
+    void hashCodeTest() {
+        BikeCollection bikesOne = new BikeCollection();
+        bikesOne.append(mBike1);
+        bikesOne.append(mBike2);
+
+        BikeCollection bikesTwo = new BikeCollection();
+        bikesTwo.append(mBike1);
+        bikesTwo.append(mBike2);
+
+        BikeCollection bikesThree = new BikeCollection();
+        bikesThree.append(mBike2);
+        bikesThree.append(mBike3);
+
+        BikeCollection bikesFour = new BikeCollection();
+        bikesFour.append(mBike2);
+        bikesFour.append(mBike1);
+
+        System.out.println(bikesOne.hashCode());
+        System.out.println(bikesTwo.hashCode());
+        System.out.println(bikesThree.hashCode());
+        System.out.println(bikesFour.hashCode());
+
+        assertEquals(bikesOne.hashCode(), bikesTwo.hashCode());
+        assertNotEquals(bikesOne.hashCode(), bikesThree.hashCode());
+        assertEquals(bikesOne.hashCode(), bikesFour.hashCode());
+    }
+
+    @Test
+    void equals() {
+        BikeCollection bikesOne = new BikeCollection();
+        bikesOne.append(mBike1);
+        bikesOne.append(mBike2);
+
+        BikeCollection bikesTwo = new BikeCollection();
+        bikesTwo.append(mBike1);
+        bikesTwo.append(mBike2);
+
+        BikeCollection bikesThree = new BikeCollection();
+        bikesThree.append(mBike2);
+        bikesThree.append(mBike3);
+
+        BikeCollection bikesFour = new BikeCollection();
+        bikesFour.append(mBike2);
+        bikesFour.append(mBike1);
+
+        assertEquals(bikesOne, bikesTwo);
+        assertNotEquals(bikesOne, bikesThree);
+        assertEquals(bikesOne, bikesFour);
+
     }
 }

@@ -5,7 +5,7 @@ import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.service.BikeParser;
-import ua.i.mail100.service.SearchService;
+import ua.i.mail100.service.BikeSearchService;
 import ua.i.mail100.util.FileUtil;
 import ua.i.mail100.util.TimeFixUtil;
 
@@ -26,14 +26,14 @@ public class TestSearch {
         List<String> readedFileStrings = FileUtil.read(FILES_DIR, "test2.txt");
         BikeCollection savedBikes = BikeParser.parse(readedFileStrings);
 
-        SearchService searchService = new SearchService(savedBikes);
+        BikeSearchService bikeSearchService = new BikeSearchService(savedBikes);
         TimeFixUtil timeFixUtil = new TimeFixUtil();
-        Bike b = searchService.findOneSimilarTo(criterion);
+        Bike b = bikeSearchService.findOneSimilarTo(criterion);
         timeFixUtil.elapsedTimePrint();
         System.out.println("result:               "+ b);
 
 //        System.out.println();
-//        BikeCollection finded = searchService.findAllSimilarTo(criterion);
+//        BikeCollection finded = bikeSearchService.findAllSimilarTo(criterion);
 //        finded.print();
 
 

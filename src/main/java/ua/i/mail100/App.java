@@ -5,7 +5,7 @@ import ua.i.mail100.input.MechanikBikeInputer;
 import ua.i.mail100.model.*;
 import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.service.BikeParser;
-import ua.i.mail100.service.SearchService;
+import ua.i.mail100.service.BikeSearchService;
 import ua.i.mail100.settings.Settings;
 import ua.i.mail100.util.FileUtil;
 
@@ -75,7 +75,6 @@ public class App {
         }
     }
 
-    // TODO not null brand
     private static void showFirstBikeByCriterion(BikeCollection bikes) throws IOException, InterruptedException {
         while (true) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -106,9 +105,9 @@ public class App {
     }
 
     public static void showCriterionAndOneFinded(BikeCollection bikes, Bike criterion) {
-        SearchService searchService = new SearchService(bikes);
+        BikeSearchService bikeSearchService = new BikeSearchService(bikes);
         System.out.println("Your search parameters:" + Settings.LINE_SEP + criterion);
-        Bike finded = searchService.findOneSimilarTo(criterion);
+        Bike finded = bikeSearchService.findOneSimilarTo(criterion);
         if (finded != null) {
             System.out.println("Results: ");
             finded.toString();
