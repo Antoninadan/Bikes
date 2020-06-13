@@ -1,7 +1,6 @@
 package ua.i.mail100.representative;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.i.mail100.model.BikeType;
@@ -97,41 +96,6 @@ class BikeCollectionTest {
         assertEquals(0, bikeCollection.getBikes().size());
     }
 
-    @Test
-    void divideListPerRecords() {
-        bikeCollection.append(mBike1);
-        bikeCollection.append(mBike2);
-        bikeCollection.append(mBike3);
-        bikeCollection.append(mBike1);
-        bikeCollection.append(mBike2);
-        bikeCollection.append(mBike3);
-        bikeCollection.append(eBike1);
-        bikeCollection.append(eBike2);
-        bikeCollection.append(eBike3);
-        bikeCollection.append(eBike1);
-        bikeCollection.append(eBike2);
-        bikeCollection.append(eBike3);
-
-        List<BikeCollection> dividedCollections = bikeCollection.divideListPerRecords(5);
-        assertEquals(5, dividedCollections.get(0).getBikes().size());
-        assertEquals(5, dividedCollections.get(1).getBikes().size());
-        assertEquals(2, dividedCollections.get(2).getBikes().size());
-
-        assertEquals(mBike1, dividedCollections.get(0).getBikes().get(0));
-        assertEquals(mBike2, dividedCollections.get(0).getBikes().get(1));
-        assertEquals(mBike3, dividedCollections.get(0).getBikes().get(2));
-        assertEquals(mBike1, dividedCollections.get(0).getBikes().get(3));
-        assertEquals(mBike2, dividedCollections.get(0).getBikes().get(4));
-
-        assertEquals(mBike3, dividedCollections.get(1).getBikes().get(0));
-        assertEquals(eBike1, dividedCollections.get(1).getBikes().get(1));
-        assertEquals(eBike2, dividedCollections.get(1).getBikes().get(2));
-        assertEquals(eBike3, dividedCollections.get(1).getBikes().get(3));
-        assertEquals(eBike1, dividedCollections.get(1).getBikes().get(4));
-
-        assertEquals(eBike2, dividedCollections.get(2).getBikes().get(0));
-        assertEquals(eBike3, dividedCollections.get(2).getBikes().get(1));
-    }
 
     @Test
     void hashCodeTest() {
@@ -183,5 +147,81 @@ class BikeCollectionTest {
         assertNotEquals(bikesOne, bikesThree);
         assertEquals(bikesOne, bikesFour);
 
+    }
+
+    @Test
+    void divideListPerRecords() {
+        bikeCollection.append(mBike1);
+        bikeCollection.append(mBike2);
+        bikeCollection.append(mBike3);
+        bikeCollection.append(mBike1);
+        bikeCollection.append(mBike2);
+        bikeCollection.append(mBike3);
+        bikeCollection.append(eBike1);
+        bikeCollection.append(eBike2);
+        bikeCollection.append(eBike3);
+        bikeCollection.append(eBike1);
+        bikeCollection.append(eBike2);
+        bikeCollection.append(eBike3);
+
+        List<BikeCollection> dividedCollections = bikeCollection.dividePerRecords(5);
+        assertEquals(5, dividedCollections.get(0).getBikes().size());
+        assertEquals(5, dividedCollections.get(1).getBikes().size());
+        assertEquals(2, dividedCollections.get(2).getBikes().size());
+
+        assertEquals(mBike1, dividedCollections.get(0).getBikes().get(0));
+        assertEquals(mBike2, dividedCollections.get(0).getBikes().get(1));
+        assertEquals(mBike3, dividedCollections.get(0).getBikes().get(2));
+        assertEquals(mBike1, dividedCollections.get(0).getBikes().get(3));
+        assertEquals(mBike2, dividedCollections.get(0).getBikes().get(4));
+
+        assertEquals(mBike3, dividedCollections.get(1).getBikes().get(0));
+        assertEquals(eBike1, dividedCollections.get(1).getBikes().get(1));
+        assertEquals(eBike2, dividedCollections.get(1).getBikes().get(2));
+        assertEquals(eBike3, dividedCollections.get(1).getBikes().get(3));
+        assertEquals(eBike1, dividedCollections.get(1).getBikes().get(4));
+
+        assertEquals(eBike2, dividedCollections.get(2).getBikes().get(0));
+        assertEquals(eBike3, dividedCollections.get(2).getBikes().get(1));
+    }
+
+    @Test
+    void dividePerParts() {
+        bikeCollection.append(mBike1);
+        bikeCollection.append(mBike2);
+        bikeCollection.append(mBike3);
+        bikeCollection.append(mBike1);
+        bikeCollection.append(mBike2);
+        bikeCollection.append(mBike3);
+        bikeCollection.append(eBike1);
+        bikeCollection.append(eBike2);
+        bikeCollection.append(eBike3);
+        bikeCollection.append(eBike1);
+        bikeCollection.append(eBike2);
+        bikeCollection.append(eBike3);
+
+        List<BikeCollection> dividedCollections = bikeCollection.dividePerParts(5);
+        assertEquals(2, dividedCollections.get(0).getBikes().size());
+        assertEquals(2, dividedCollections.get(1).getBikes().size());
+        assertEquals(2, dividedCollections.get(2).getBikes().size());
+        assertEquals(2, dividedCollections.get(3).getBikes().size());
+        assertEquals(4, dividedCollections.get(4).getBikes().size());
+
+        assertEquals(mBike1, dividedCollections.get(0).getBikes().get(0));
+        assertEquals(mBike2, dividedCollections.get(0).getBikes().get(1));
+
+        assertEquals(mBike3, dividedCollections.get(1).getBikes().get(0));
+        assertEquals(mBike1, dividedCollections.get(1).getBikes().get(1));
+
+        assertEquals(mBike2, dividedCollections.get(2).getBikes().get(0));
+        assertEquals(mBike3, dividedCollections.get(2).getBikes().get(1));
+
+        assertEquals(eBike1, dividedCollections.get(3).getBikes().get(0));
+        assertEquals(eBike2, dividedCollections.get(3).getBikes().get(1));
+
+        assertEquals(eBike3, dividedCollections.get(4).getBikes().get(0));
+        assertEquals(eBike1, dividedCollections.get(4).getBikes().get(1));
+        assertEquals(eBike2, dividedCollections.get(4).getBikes().get(2));
+        assertEquals(eBike3, dividedCollections.get(4).getBikes().get(3));
     }
 }

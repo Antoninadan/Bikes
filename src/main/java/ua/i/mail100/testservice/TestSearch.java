@@ -5,11 +5,17 @@ import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.service.BikeParser;
-import ua.i.mail100.service.BikeSearchService;
+import ua.i.mail100.service.LinearSearch;
+import ua.i.mail100.service.SetSearch;
+import ua.i.mail100.service.multisearch.Dispatcher;
+import ua.i.mail100.service.multisearch.MultiSearch;
+import ua.i.mail100.service.multisearch.ThreadItem;
+import ua.i.mail100.util.DivideUtil;
 import ua.i.mail100.util.FileUtil;
 import ua.i.mail100.util.TimeFixUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestSearch {
@@ -26,19 +32,48 @@ public class TestSearch {
         List<String> readedFileStrings = FileUtil.read(FILES_DIR, "test2.txt");
         BikeCollection savedBikes = BikeParser.parse(readedFileStrings);
 
-        BikeSearchService bikeSearchService = new BikeSearchService(savedBikes);
+        SetSearch setSearch = new SetSearch(savedBikes);
         TimeFixUtil timeFixUtil = new TimeFixUtil();
-        Bike b = bikeSearchService.findOneSimilarTo(criterion);
+        Bike b = setSearch.findOneSimilarTo(criterion);
         timeFixUtil.elapsedTimePrint();
         System.out.println("result:               "+ b);
+        System.out.println();
 
-//        System.out.println();
-//        BikeCollection finded = bikeSearchService.findAllSimilarTo(criterion);
-//        finded.print();
+        TimeFixUtil timeFixUtil3 = new TimeFixUtil();
+        BikeCollection finded = setSearch.findAllSimilarTo(criterion);
+        timeFixUtil3.elapsedTimePrint();
+        System.out.println("result:               ");
+        finded.print();
+        System.out.println();
+
+        System.out.println("-------------");
+
+        LinearSearch linearSearch = new LinearSearch(savedBikes.getBikes());
+        TimeFixUtil timeFixUtil2 = new TimeFixUtil();
+        Bike b2 = linearSearch.findOneSimilarTo(criterion);
+        timeFixUtil2.elapsedTimePrint();
+        System.out.println("result:               "+ b);
+        System.out.println();
+
+        TimeFixUtil timeFixUtil4 = new TimeFixUtil();
+        BikeCollection finded2 = linearSearch.findAllSimilarTo(criterion);
+        timeFixUtil4.elapsedTimePrint();
+        System.out.println("result:               ");
+        finded2.print();
+        System.out.println();
+
+        //        List<Integer> integers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+
+        //
+        System.out.println("-----------------------------");
 
 
+        MultiSearch multiSearch = new MultiSearch(savedBikes.getBikes(), 2);
+        TimeFixUtil timeFixUtil5 = new TimeFixUtil();
 
-
+        Bike b5 =  multiSearch.findOneSimilarTo(criterion);
+        timeFixUtil5.elapsedTimePrint();
+        System.out.println("result:               "+ b5);
 
 
 

@@ -5,7 +5,7 @@ import ua.i.mail100.input.MechanikBikeInputer;
 import ua.i.mail100.model.*;
 import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.service.BikeParser;
-import ua.i.mail100.service.BikeSearchService;
+import ua.i.mail100.service.SetSearch;
 import ua.i.mail100.settings.Settings;
 import ua.i.mail100.util.FileUtil;
 
@@ -59,7 +59,7 @@ public class App {
     }
 
     private static void showBikesPerPages(BikeCollection bikes) throws IOException {
-        List<BikeCollection> bikeCollectionList = bikes.divideListPerRecords(Settings.SHOW_BIKES_PER_PAGE);
+        List<BikeCollection> bikeCollectionList = bikes.dividePerRecords(Settings.SHOW_BIKES_PER_PAGE);
         int count = 0;
 
         while (true) {
@@ -105,9 +105,9 @@ public class App {
     }
 
     public static void showCriterionAndOneFinded(BikeCollection bikes, Bike criterion) {
-        BikeSearchService bikeSearchService = new BikeSearchService(bikes);
+        SetSearch setSearch = new SetSearch(bikes);
         System.out.println("Your search parameters:" + Settings.LINE_SEP + criterion);
-        Bike finded = bikeSearchService.findOneSimilarTo(criterion);
+        Bike finded = setSearch.findOneSimilarTo(criterion);
         if (finded != null) {
             System.out.println("Results: ");
             finded.toString();

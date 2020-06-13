@@ -47,7 +47,6 @@ public abstract class Bike {
         return result;
     }
 
-    // TODO test
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

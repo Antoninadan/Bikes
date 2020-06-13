@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ua.i.mail100.model.Bike;
 import ua.i.mail100.model.BikeType;
+import ua.i.mail100.util.DivideUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +66,7 @@ public class BikeCollection {
         bikes.clear();
     }
 
-    public List<BikeCollection> divideListPerRecords(int records) {
+    public List<BikeCollection> dividePerRecords(int records) {
         int size = bikes.size();
         int div = (size % records != 0) ? (size / records + 1) : (size / records);
         List<BikeCollection> result = new ArrayList<>();
@@ -73,6 +74,21 @@ public class BikeCollection {
         for (int i = 0; i < div; i++) {
             BikeCollection temp = new BikeCollection();
             for (int j = i * records; j < Math.min(size, i * records + records); j++) {
+                temp.append(this.get(j));
+            }
+            result.add(temp);
+        }
+        return result;
+    }
+
+    public List<BikeCollection>  dividePerParts(int parts) {
+        int size = bikes.size();
+        int[][] indexesOfParts = DivideUtil.getIndexesPerParts(size, parts);
+        List<BikeCollection> result = new ArrayList<>();
+
+        for (int i = 0; i < parts; i++) {
+            BikeCollection temp = new BikeCollection();
+            for (int j = indexesOfParts[i][0]; j <= indexesOfParts[i][1]; j++) {
                 temp.append(this.get(j));
             }
             result.add(temp);

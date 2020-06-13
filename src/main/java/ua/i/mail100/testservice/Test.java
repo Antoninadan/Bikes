@@ -6,23 +6,22 @@ import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;
 import ua.i.mail100.representative.BikeCollection;
+import ua.i.mail100.util.DivideUtil;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        Inputer inputerOne;
-        Inputer inputerTwo;
-        Inputer inputerThree;
-        Inputer inputerFour;
+        List<Integer> integers = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 
-        inputerOne = new Inputer("1", InputedType.STRING);
-        inputerTwo = new Inputer("1", InputedType.STRING);
-        inputerThree = new Inputer("1", InputedType.STRING_NOT_EMPTY);
-        inputerFour = new Inputer("2", InputedType.STRING);
-
-
+        int parts = 3;
+        int size = integers.size();
+        int[][] indexesOfParts = DivideUtil.getIndexesPerParts(size, parts);
+        for (int i = 0; i < parts; i++) {
+            System.out.println(integers.subList(indexesOfParts[i][0], indexesOfParts[i][1] + 1));
+        }
     }
 }

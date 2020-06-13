@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-public class BikeSearchService {
+public class SetSearch {
     private BikeCollection bikes;
 
-    public BikeSearchService(BikeCollection bikes) {
+    public SetSearch(BikeCollection bikes) {
         this.bikes = bikes;
     }
 
@@ -53,8 +53,8 @@ public class BikeSearchService {
             hashSet = new HashSet<Bike>(bikes.getEBikeHashSet());
         }
 
-        List<Bike> bikeList = hashSet.stream().filter(x -> x.similar(criterion)).collect(Collectors.toList());
-        if (!bikeList.isEmpty()) result = new BikeCollection(bikeList);
+        List<Bike> findedBikes = hashSet.stream().filter(x -> x.similar(criterion)).collect(Collectors.toList());
+        if (!findedBikes.isEmpty()) result = new BikeCollection(findedBikes);
 
         return result;
     }
@@ -77,7 +77,7 @@ public class BikeSearchService {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BikeSearchService other = (BikeSearchService) obj;
+        SetSearch other = (SetSearch) obj;
         if (!bikes.equals(other.bikes)) return false;
         return true;
     }

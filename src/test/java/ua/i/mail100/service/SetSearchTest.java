@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BikeSearchServiceTest {
+class SetSearchTest {
     ElectroBike criterion;
     ElectroBike bike2;
     ElectroBike bike3;
@@ -20,9 +20,9 @@ class BikeSearchServiceTest {
     BikeCollection bikeCollection = new BikeCollection();
     BikeCollection bikeCollectionTwo = new BikeCollection();
     BikeCollection bikeCollectionThree = new BikeCollection();
-    BikeSearchService bikeSearchServiceOne;
-    BikeSearchService bikeSearchServiceTwo;
-    BikeSearchService bikeSearchServiceThree;
+    SetSearch setSearchOne;
+    SetSearch setSearchTwo;
+    SetSearch setSearchThree;
 
     @BeforeEach
     void setUp() {
@@ -56,15 +56,15 @@ class BikeSearchServiceTest {
 
         bikeCollectionThree.append(bike7);
 
-        bikeSearchServiceOne = new BikeSearchService(bikeCollection);
-        bikeSearchServiceTwo = new BikeSearchService(bikeCollectionTwo);
-        bikeSearchServiceThree = new BikeSearchService(bikeCollectionThree);
+        setSearchOne = new SetSearch(bikeCollection);
+        setSearchTwo = new SetSearch(bikeCollectionTwo);
+        setSearchThree = new SetSearch(bikeCollectionThree);
     }
 
     @Test
     void findOneSimilarTo() {
-        BikeSearchService bikeSearchService = new BikeSearchService(bikeCollection);
-        Bike findedBike = bikeSearchService.findOneSimilarTo(criterion);
+        SetSearch setSearch = new SetSearch(bikeCollection);
+        Bike findedBike = setSearch.findOneSimilarTo(criterion);
 
         assertFalse(bike2.similar(criterion));
         assertFalse(bike3.similar(criterion));
@@ -77,8 +77,8 @@ class BikeSearchServiceTest {
 
     @Test
     void findAllSimilarTo() {
-        BikeSearchService bikeSearchService = new BikeSearchService(bikeCollection);
-        BikeCollection findedCollection = bikeSearchService.findAllSimilarTo(criterion);
+        SetSearch setSearch = new SetSearch(bikeCollection);
+        BikeCollection findedCollection = setSearch.findAllSimilarTo(criterion);
 
         assertEquals(1, findedCollection.getBikes().size());
 
@@ -93,13 +93,13 @@ class BikeSearchServiceTest {
 
     @Test
     void hashCodeTest() {
-        assertEquals(bikeSearchServiceOne.hashCode(), bikeSearchServiceTwo.hashCode());
-        assertNotEquals(bikeSearchServiceOne.hashCode(), bikeSearchServiceThree.hashCode());
+        assertEquals(setSearchOne.hashCode(), setSearchTwo.hashCode());
+        assertNotEquals(setSearchOne.hashCode(), setSearchThree.hashCode());
     }
 
     @Test
     void equals() {
-        assertEquals(bikeSearchServiceOne, bikeSearchServiceTwo);
-        assertNotEquals(bikeSearchServiceOne, bikeSearchServiceThree);
+        assertEquals(setSearchOne, setSearchTwo);
+        assertNotEquals(setSearchOne, setSearchThree);
     }
 }
