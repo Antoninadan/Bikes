@@ -7,7 +7,7 @@
 //import ua.i.mail100.model.ElectroBike;
 //import ua.i.mail100.model.MechanicBike;
 //import ua.i.mail100.representative.BikeCollection;
-//import ua.i.mail100.service.LinearSearch;
+//import ua.i.mail100.service.LinearSearchI;
 //
 //import static org.junit.jupiter.api.Assertions.*;
 //
@@ -22,9 +22,9 @@
 //    BikeCollection bikeCollection = new BikeCollection();
 //    BikeCollection bikeCollectionTwo = new BikeCollection();
 //    BikeCollection bikeCollectionThree = new BikeCollection();
-//    LinearSearch searchServiceSimpleMethodOne;
-//    LinearSearch searchServiceSimpleMethodTwo;
-//    LinearSearch searchServiceSimpleMethodThree;
+//    LinearSearchI searchServiceSimpleMethodOne;
+//    LinearSearchI searchServiceSimpleMethodTwo;
+//    LinearSearchI searchServiceSimpleMethodThree;
 //
 //    @BeforeEach
 //    void setUp() {
@@ -58,14 +58,14 @@
 //
 //        bikeCollectionThree.append(bike7);
 //
-//        searchServiceSimpleMethodOne = new LinearSearch(bikeCollection);
-//        searchServiceSimpleMethodTwo = new LinearSearch(bikeCollectionTwo);
-//        searchServiceSimpleMethodThree = new LinearSearch(bikeCollectionThree);
+//        searchServiceSimpleMethodOne = new LinearSearchI(bikeCollection);
+//        searchServiceSimpleMethodTwo = new LinearSearchI(bikeCollectionTwo);
+//        searchServiceSimpleMethodThree = new LinearSearchI(bikeCollectionThree);
 //    }
 //
 //    @Test
 //    void findOneSimilarTo() {
-//        LinearSearch searchServiceSimpleMethod = new LinearSearch(bikeCollection);
+//        LinearSearchI searchServiceSimpleMethod = new LinearSearchI(bikeCollection);
 //        Bike findedBike = searchServiceSimpleMethod.findOneSimilarTo(criterion);
 //
 //        assertFalse(bike2.similar(criterion));

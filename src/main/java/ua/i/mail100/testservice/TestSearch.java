@@ -48,7 +48,7 @@ public class TestSearch {
 
         System.out.println("-------------");
 
-        LinearSearch linearSearch = new LinearSearch(savedBikes.getBikes());
+        LinearSearch linearSearch = new LinearSearch(savedBikes);
         TimeFixUtil timeFixUtil2 = new TimeFixUtil();
         Bike b2 = linearSearch.findOneSimilarTo(criterion);
         timeFixUtil2.elapsedTimePrint();
@@ -68,7 +68,7 @@ public class TestSearch {
         System.out.println("-----------------------------");
 
 
-        MultiSearch multiSearch = new MultiSearch(savedBikes.getBikes(), 2);
+        MultiSearch multiSearch = new MultiSearch(savedBikes, 1);
         TimeFixUtil timeFixUtil5 = new TimeFixUtil();
 
         Bike b5 =  multiSearch.findOneSimilarTo(criterion);

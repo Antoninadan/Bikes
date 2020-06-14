@@ -27,6 +27,11 @@ public class BikeCollection {
         return bikes.get(index);
     }
 
+    // TODO test
+    public BikeCollection getSubCollection(int fromIndex, int toIndex) {
+        return new BikeCollection(bikes.subList(fromIndex, toIndex));
+    }
+
     public BikeCollection append(Bike bike) {
         bikes.add(bike);
         if (bike.getType() == BikeType.FOLDING_BIKE) {
@@ -81,7 +86,7 @@ public class BikeCollection {
         return result;
     }
 
-    public List<BikeCollection>  dividePerParts(int parts) {
+    public List<BikeCollection> dividePerParts(int parts) {
         int size = bikes.size();
         int[][] indexesOfParts = DivideUtil.getIndexesPerParts(size, parts);
         List<BikeCollection> result = new ArrayList<>();

@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 public class LinearSearch {
     private List<Bike> bikeList;
 
-//    public LinearSearch(BikeCollection bikes) {
-//        this.bikeList = bikes.getBikes();
-//    }
-
-    public LinearSearch(List<Bike> bikes) {
-        this.bikeList = bikes;
+    public LinearSearch(BikeCollection bikes) {
+        this.bikeList = bikes.getBikes();
     }
+
+//    public LinearSearchI(List<Bike> bikes) {
+//        this.bikeList = bikes;
+//    }
 
     public Bike findOneSimilarTo(Bike criterion) {
         Optional<Bike> bike = bikeList.stream()

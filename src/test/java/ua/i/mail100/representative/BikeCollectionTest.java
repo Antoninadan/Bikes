@@ -53,6 +53,23 @@ class BikeCollectionTest {
     }
 
     @Test
+    void getSubCollection() {
+        bikeCollection.append(mBike1); // 0
+        bikeCollection.append(mBike2); // 1
+        bikeCollection.append(mBike3); // 2
+        bikeCollection.append(mBike1); // 3
+        bikeCollection.append(mBike2); // 4
+        bikeCollection.append(mBike3); // 5
+        bikeCollection.append(eBike1); // 6
+
+        BikeCollection bikeCollection1 = bikeCollection.getSubCollection(2, 5);
+        assertEquals(3, bikeCollection1.getBikes().size());
+        assertEquals(mBike3, bikeCollection1.get(0));
+        assertEquals(mBike1, bikeCollection1.get(1));
+        assertEquals(mBike2, bikeCollection1.get(2));
+    }
+
+    @Test
     void append() {
         bikeCollection.append(mBike1);
         bikeCollection.append(mBike2);
