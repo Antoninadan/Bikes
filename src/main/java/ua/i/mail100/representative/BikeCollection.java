@@ -27,13 +27,18 @@ public class BikeCollection {
         return bikes.get(index);
     }
 
-    // TODO test
     public BikeCollection getSubCollection(int fromIndex, int toIndex) {
         return new BikeCollection(bikes.subList(fromIndex, toIndex));
     }
 
+    // TODO change test
     public BikeCollection append(Bike bike) {
         bikes.add(bike);
+        appendToSet(bike);
+        return this;
+    }
+
+    public void appendToSet(Bike bike) {
         if (bike.getType() == BikeType.FOLDING_BIKE) {
             foldingBikeHashSet.add(bike);
         }
@@ -43,8 +48,8 @@ public class BikeCollection {
         if (bike.getType() == BikeType.E_BIKE) {
             eBikeHashSet.add(bike);
         }
-        return this;
     }
+
 
     public void print() {
         bikes.forEach(it -> System.out.println(it));

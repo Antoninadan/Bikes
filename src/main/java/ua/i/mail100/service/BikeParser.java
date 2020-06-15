@@ -22,13 +22,15 @@ public class BikeParser {
             }
 
             String brand = parts[0].substring(type.toString().length() + 1);
-            Integer weightInGrams = Integer.valueOf(parts[2].trim());
-            Boolean isLights = (parts[3].trim().equals("true")) ? true : false;
+            Integer weightInGrams = null;
+            Boolean isLights = null;
             String color = parts[5].trim();
             Integer price = Integer.valueOf(parts[6].trim());
 
             if ((type == BikeType.SPEEDELEC) || (type == BikeType.E_BIKE)) {
                 Integer speedMaxInKmInHour = Integer.valueOf(parts[1].trim());
+                weightInGrams = Integer.valueOf(parts[2].trim());
+                isLights = (parts[3].trim().equals("true")) ? true : false;
                 Integer batteryCapacityInMAh = Integer.valueOf(parts[4].trim());
                 result.append(new ElectroBike(type, brand, weightInGrams,
                         isLights, color, price, speedMaxInKmInHour, batteryCapacityInMAh));
@@ -36,6 +38,8 @@ public class BikeParser {
             if (type == BikeType.FOLDING_BIKE) {
                 Integer wheelSizeInInch = Integer.valueOf(parts[1].trim());
                 Integer gearNumber = Integer.valueOf(parts[2].trim());
+                weightInGrams = Integer.valueOf(parts[3].trim());
+                isLights = (parts[4].trim().equals("true")) ? true : false;
                 result.append(new MechanicBike(type, brand, weightInGrams,
                         isLights, color, price, wheelSizeInInch, gearNumber));
             }

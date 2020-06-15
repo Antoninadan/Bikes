@@ -5,7 +5,9 @@ import ua.i.mail100.input.MechanikBikeInputer;
 import ua.i.mail100.model.*;
 import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.service.BikeParser;
+import ua.i.mail100.service.LinearSearch;
 import ua.i.mail100.service.SetSearch;
+import ua.i.mail100.service.multisearch.MultiSearch;
 import ua.i.mail100.settings.Settings;
 import ua.i.mail100.util.FileUtil;
 
@@ -46,7 +48,7 @@ public class App {
                 } else if (command == 4) {
                     newBikes.append(ElectroBikeInputer.inputEBike());
                 } else if (command == 5) {
-                    showFirstBikeByCriterion(savedBikes);
+                    showFirstBikeByCriterion(savedBikes, args[1]);
                 } else if (command == 6) {
                     FileUtil.appendTo(newBikes.getListForWrite(), Settings.FILES_DIR, fileName);
                     savedBikes = savedBikes.union(newBikes);
@@ -75,7 +77,7 @@ public class App {
         }
     }
 
-    private static void showFirstBikeByCriterion(BikeCollection bikes) throws IOException, InterruptedException {
+    private static void showFirstBikeByCriterion(BikeCollection bikes, String searchType) throws IOException, InterruptedException {
         while (true) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("1 - Input folding bike parameters" + Settings.LINE_SEP +
@@ -86,15 +88,15 @@ public class App {
                 Integer command = Integer.parseInt(bufferedReader.readLine());
                 if (command == 1) {
                     criterion = MechanikBikeInputer.inputFoldingBike();
-                    showCriterionAndOneFinded(bikes, criterion);
+                    showCriterionAndOneFinded(bikes, criterion, searchType);
                     return;
                 } else if (command == 2) {
                     criterion = ElectroBikeInputer.inputSpeedelec();
-                    showCriterionAndOneFinded(bikes, criterion);
+                    showCriterionAndOneFinded(bikes, criterion, searchType);
                     return;
                 } else if (command == 3) {
                     criterion = ElectroBikeInputer.inputEBike();
-                    showCriterionAndOneFinded(bikes, criterion);
+                    showCriterionAndOneFinded(bikes, criterion, searchType);
                     return;
                 }
             } catch (NumberFormatException e) {
@@ -104,13 +106,26 @@ public class App {
         }
     }
 
-    public static void showCriterionAndOneFinded(BikeCollection bikes, Bike criterion) {
+    public static void showCriterionAndOneFinded(BikeCollection bikes, Bike criterion, String searchType) {
         SetSearch setSearch = new SetSearch(bikes);
+        LinearSearch linearSearch = new LinearSearch(bikes);
+        MultiSearch multiSearch = new MultiSearch(bikes, 3);
         System.out.println("Your search parameters:" + Settings.LINE_SEP + criterion);
-        Bike finded = setSearch.findOneSimilarTo(criterion);
+        Bike finded = null;
+        if (searchType.equals("search1")) {
+            finded = setSearch.findOneSimilarTo(criterion);
+        }
+        if (searchType.equals("search2")) {
+            finded = linearSearch.findOneSimilarTo(criterion);
+        }
+        if (searchType.equals("search3")) {
+            finded = multiSearch.findOneSimilarTo(criterion);
+        }
+
         if (finded != null) {
+            System.out.println();
             System.out.println("Results: ");
-            finded.toString();
+            System.out.println(finded);
         } else {
             System.out.println("Results: 0");
         }

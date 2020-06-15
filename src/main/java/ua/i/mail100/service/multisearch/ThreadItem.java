@@ -6,12 +6,10 @@ import ua.i.mail100.service.LinearSearch;
 
 public class ThreadItem extends Thread {
     BikeCollection bikes;
-    //    List<Bike> bikes;
     Bike criterion;
     Bike result;
     Dispatcher dispatcher;
 
-    //    public ThreadItemI( List<Bike> bikes, Bike criterion, DispatcherI dispatcher) {
     public ThreadItem(BikeCollection bikes, Bike criterion, Dispatcher dispatcher) {
         this.bikes = bikes;
         this.criterion = criterion;

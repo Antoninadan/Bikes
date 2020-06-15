@@ -10,7 +10,6 @@ import java.util.List;
 
 @AllArgsConstructor
 public class MultiSearch {
-//    List<Bike> bikes;
     BikeCollection bikes;
     int parts;
 
@@ -21,8 +20,6 @@ public class MultiSearch {
         int size = bikes.getBikes().size();
         int[][] indexesOfParts = DivideUtil.getIndexesPerParts(size, parts);
         for (int i = 0; i < parts; i++) {
-//            ThreadItemI threadItem = new ThreadItemI(bikes.subList(indexesOfParts[i][0], indexesOfParts[i][1] + 1),
-//                    criterion, dispatcher);
             ThreadItem threadItem = new ThreadItem(bikes.getSubCollection(indexesOfParts[i][0], indexesOfParts[i][1] + 1),
                     criterion, dispatcher);
             threads.add(threadItem);

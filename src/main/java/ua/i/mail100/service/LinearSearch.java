@@ -14,10 +14,6 @@ public class LinearSearch {
         this.bikeList = bikes.getBikes();
     }
 
-//    public LinearSearchI(List<Bike> bikes) {
-//        this.bikeList = bikes;
-//    }
-
     public Bike findOneSimilarTo(Bike criterion) {
         Optional<Bike> bike = bikeList.stream()
                 .filter(x -> (x.getType() == criterion.getType()))
@@ -66,3 +62,6 @@ public class LinearSearch {
 //        return true;
 //    }
 }
+
+
+//TODO equals for all new

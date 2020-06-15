@@ -1,6 +1,5 @@
 package ua.i.mail100.representative;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.i.mail100.model.BikeType;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BikeCollectionTest {
     ElectroBike eBike1;
@@ -37,11 +36,6 @@ class BikeCollectionTest {
         eBike3 = new ElectroBike(BikeType.E_BIKE, "brand3", 46534,
                 true, "green", 45312, 40, 81);
         bikeCollection = new BikeCollection();
-    }
-
-    @AfterEach
-    void tearDown() {
-
     }
 
     @Test
@@ -72,10 +66,21 @@ class BikeCollectionTest {
     @Test
     void append() {
         bikeCollection.append(mBike1);
-        bikeCollection.append(mBike2);
-        assertEquals(2, bikeCollection.getBikes().size());
+        bikeCollection.append(eBike1);
+        bikeCollection.append(eBike2);
+        assertEquals(3, bikeCollection.getBikes().size());
         assertEquals(mBike1, bikeCollection.get(0));
-        assertEquals(mBike2, bikeCollection.get(1));
+        assertEquals(eBike1, bikeCollection.get(1));
+        assertEquals(eBike2, bikeCollection.get(2));
+
+        assertEquals(1, bikeCollection.getFoldingBikeHashSet().size());
+        assertTrue(bikeCollection.getFoldingBikeHashSet().contains(mBike1));
+
+        assertEquals(1, bikeCollection.getEBikeHashSet().size());
+        assertTrue(bikeCollection.getEBikeHashSet().contains(eBike1));
+
+        assertEquals(1, bikeCollection.getSpedelecBikeHashSet().size());
+        assertTrue(bikeCollection.getSpedelecBikeHashSet().contains(eBike2));
     }
 
     @Test
