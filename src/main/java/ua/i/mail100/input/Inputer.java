@@ -5,6 +5,8 @@ import ua.i.mail100.settings.Settings;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Inputer {
     private String question;
@@ -17,18 +19,16 @@ public class Inputer {
 
     public <T> T input() throws IOException {
         T input = null;
-
+        System.out.println(question + Settings.LINE_SEP);
         if (type == InputedType.INTEGER) return (T) inputInteger();
         if (type == InputedType.STRING) return (T) inputString();
         if (type == InputedType.STRING_NOT_EMPTY) return (T) inputStringNotEmpty();
         if (type == InputedType.BOOLEAN) return (T) inputBoolean();
-
         return input;
     }
 
     private String inputString() throws IOException {
         String result = null;
-        System.out.println(question + Settings.LINE_SEP);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         while (result == null) {
             result = bufferedReader.readLine();
@@ -38,27 +38,34 @@ public class Inputer {
 
     private String inputStringNotEmpty() throws IOException {
         String result = new String();
-        System.out.println(question + Settings.LINE_SEP);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         while (result.isEmpty()) {
             result = bufferedReader.readLine();
             if (result.isEmpty()) {
-                System.out.println("Value must be filled");
+                System.out.println("Value is required");
             }
         }
         return result;
     }
 
     private Integer inputInteger() throws IOException {
-        Integer result = -Integer.MAX_VALUE;
-        while (result != null && result == -Integer.MAX_VALUE) {
+        Integer result = -1;
+        while (result != null && result == -1) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(question + Settings.LINE_SEP);
             try {
                 String line = bufferedReader.readLine();
-                result = (line.length() > 0) ? Integer.parseInt(line) : null;
+                Pattern pattern = Pattern.compile("(0|[1-9][0-9]*)");
+                if (line.length() > 0) {
+                    Matcher matcher = pattern.matcher(line);
+                    if ( matcher.matches()) {
+                        result = Integer.parseInt(line);
+                    } else {
+                        line = "-";
+                        result = Integer.parseInt(line);
+                    }
+                } else result = null;
             } catch (NumberFormatException e) {
-                System.out.println("Bad format - input integer e.g. 10");
+                System.out.println("Bad format - input integer >=0 e.g. 10");
             } catch (NullPointerException e) {
                 return result;
             }
@@ -66,20 +73,24 @@ public class Inputer {
         return result;
     }
 
-    private Boolean inputBoolean() throws IOException {
+    private static Boolean inputBoolean() throws IOException {
         Boolean resultReturn = null;
-        Integer result = -Integer.MAX_VALUE;
-        while (result != null && result == -Integer.MAX_VALUE) {
+        Integer temp = -1;
+        while (temp != null && temp == -1) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(question + Settings.LINE_SEP);
             try {
                 String line = bufferedReader.readLine();
-                result = (line.length() > 0) ? Integer.parseInt(line) : null;
-                if (!result.equals(1) && !result.equals(0)) {
-                    result = -Integer.MAX_VALUE;
-                    throw new NumberFormatException();
-                } else if (result == 1) resultReturn = true;
-                else resultReturn = false;
+                Pattern pattern = Pattern.compile("(0|1)");
+                if (line.length() > 0) {
+                    Matcher matcher = pattern.matcher(line);
+                    if (matcher.matches()) {
+                        resultReturn = Boolean.parseBoolean(line);
+                        temp = 1;
+                    } else {
+                        line = "-";
+                        temp = Integer.parseInt(line);
+                    }
+                } else temp = null;
             } catch (NumberFormatException e) {
                 System.out.println("Bad command - true = 1, false = 0");
             } catch (NullPointerException e) {

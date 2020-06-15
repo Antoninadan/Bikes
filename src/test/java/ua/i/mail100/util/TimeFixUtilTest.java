@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TimeFixUtilTest {
     public static final Integer TEST_DURATION_MILLI = 3;
-    public static final Integer TEST_DURATION_DELTA = 3;
+    public static final Integer TEST_DURATION_DELTA = 10;
 
     @Test
     public void elapsedTime(){

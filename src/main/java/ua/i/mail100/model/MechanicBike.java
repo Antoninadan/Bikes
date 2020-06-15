@@ -31,7 +31,7 @@ public class MechanicBike extends Bike {
     }
 
     public String toStringForWrite() {
-        return type.toString() + " " +
+        return Settings.LINE_SEP + type.toString() + " " +
                 brand + "; " +
                 wheelSizeInInch + "; " +
                 gearNumber + "; " +

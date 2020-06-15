@@ -30,14 +30,24 @@ public class ElectroBike extends Bike {
 
 
     public String toStringForWrite() {
-        return type.toString() + " " +
+        String speedMaxInKmInHourStr = (speedMaxInKmInHour != null) ? (speedMaxInKmInHour.toString()) : "";
+        String weightInGramsStr = (weightInGrams != null) ? (weightInGrams.toString()) : "";
+        String isLightsStr = (isLights != null) ? (isLights.toString()) : "";
+        String batteryCapacityInMAhStr = (batteryCapacityInMAh != null) ? (batteryCapacityInMAh.toString()) : "";
+        String colorStr = (color != null) ? (color) : "";
+        String priceStr = (price != null) ? (price.toString()) : "";
+
+        return Settings.LINE_SEP + type.toString() + " " +
                 brand + "; " +
-                speedMaxInKmInHour + "; " +
-                weightInGrams + "; " +
-                isLights + "; " +
-                batteryCapacityInMAh + "; " +
-                color + "; " +
-                price;
+                // TODO add to test parce
+                // TODO add to test this
+                // TODO mechanik also
+                speedMaxInKmInHourStr + "; " +
+                weightInGramsStr  + "; " +
+                isLightsStr + "; " +
+                batteryCapacityInMAhStr + "; " +
+                colorStr + "; " +
+                priceStr;
     }
 
     @Override

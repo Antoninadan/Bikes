@@ -1,8 +1,6 @@
 package ua.i.mail100.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.i.mail100.representative.BikeCollection;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;

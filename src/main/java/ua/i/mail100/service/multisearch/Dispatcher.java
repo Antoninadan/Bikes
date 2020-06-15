@@ -1,8 +1,10 @@
 package ua.i.mail100.service.multisearch;
 
+import ua.i.mail100.input.Inputer;
 import ua.i.mail100.model.Bike;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -51,5 +53,23 @@ public class Dispatcher {
                 collect(Collectors.toList()).size() > 0)
             return true;
         else return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dispatcher other = (Dispatcher) obj;
+        if (!threads.equals(other.threads)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(threads);
     }
 }

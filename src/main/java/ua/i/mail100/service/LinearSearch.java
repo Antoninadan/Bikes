@@ -36,32 +36,27 @@ public class LinearSearch {
         return result;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = bikeList.hashCode();
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 
-//    // TODO change
-//    @Override
-//    public int hashCode() {
-//        final int prime = 31;
-//        int result = 1;
-//        long temp;
-//        temp = bikes.hashCode();
-//        result = prime * result + (int) (temp ^ (temp >>> 32));
-//        return result;
-//    }
-//
-//    // TODO change
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj)
-//            return true;
-//        if (obj == null)
-//            return false;
-//        if (getClass() != obj.getClass())
-//            return false;
-//        SetSearch other = (SetSearch) obj;
-//        if (!bikes.equals(other.bikes)) return false;
-//        return true;
-//    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LinearSearch other = (LinearSearch) obj;
+        if (!bikeList.equals(other.bikeList)) return false;
+        return true;
+    }
 }
 
-
-//TODO equals for all new

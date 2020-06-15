@@ -31,7 +31,6 @@ public class BikeCollection {
         return new BikeCollection(bikes.subList(fromIndex, toIndex));
     }
 
-    // TODO change test
     public BikeCollection append(Bike bike) {
         bikes.add(bike);
         appendToSet(bike);
@@ -49,7 +48,6 @@ public class BikeCollection {
             eBikeHashSet.add(bike);
         }
     }
-
 
     public void print() {
         bikes.forEach(it -> System.out.println(it));

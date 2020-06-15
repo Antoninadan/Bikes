@@ -9,7 +9,7 @@ import ua.i.mail100.model.MechanicBike;
 import java.util.List;
 
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BikeCollectionTest {
@@ -172,7 +172,7 @@ class BikeCollectionTest {
     }
 
     @Test
-    void divideListPerRecords() {
+    void dividePerRecords() {
         bikeCollection.append(mBike1);
         bikeCollection.append(mBike2);
         bikeCollection.append(mBike3);

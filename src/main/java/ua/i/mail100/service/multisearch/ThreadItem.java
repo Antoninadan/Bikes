@@ -25,5 +25,34 @@ public class ThreadItem extends Thread {
             dispatcher.saveResult(result);
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = bikes.hashCode();
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = criterion.hashCode();
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = dispatcher.hashCode();
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ThreadItem other = (ThreadItem) obj;
+        if (!bikes.equals(other.bikes)) return false;
+        if (!criterion.equals(other.criterion)) return false;
+        if (!dispatcher.equals(other.dispatcher)) return false;
+        return true;
+    }
 }
 

@@ -1,4 +1,4 @@
-package ua.i.mail100.service;
+package ua.i.mail100.service.multisearch;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LinearSearchTest {
+class MultiSearchTest {
     ElectroBike criterion;
     ElectroBike bike2;
     ElectroBike bike3;
@@ -24,9 +24,9 @@ class LinearSearchTest {
     BikeCollection bikeCollection = new BikeCollection();
     BikeCollection bikeCollectionTwo = new BikeCollection();
     BikeCollection bikeCollectionThree = new BikeCollection();
-    LinearSearch linearSearchOne;
-    LinearSearch linearSearchTwo;
-    LinearSearch linearSearchThree;
+    MultiSearch multiSearchOne;
+    MultiSearch multiSearchTwo;
+    MultiSearch multiSearchThree;
 
     @BeforeEach
     void setUp() {
@@ -60,15 +60,15 @@ class LinearSearchTest {
 
         bikeCollectionThree.append(bike7);
 
-        linearSearchOne = new LinearSearch(bikeCollection);
-        linearSearchTwo = new LinearSearch(bikeCollectionTwo);
-        linearSearchThree = new LinearSearch(bikeCollectionThree);
+        multiSearchOne = new MultiSearch(bikeCollection, 3);
+        multiSearchTwo = new MultiSearch(bikeCollectionTwo, 3);
+        multiSearchThree = new MultiSearch(bikeCollectionThree, 3);
     }
 
     @Test
     void findOneSimilarTo() {
-        LinearSearch searchServiceSimpleMethod = new LinearSearch(bikeCollection);
-        Bike findedBike = searchServiceSimpleMethod.findOneSimilarTo(criterion);
+        MultiSearch multiSearch = new MultiSearch(bikeCollection, 3);
+        Bike findedBike = multiSearch.findOneSimilarTo(criterion);
 
         assertFalse(bike2.similar(criterion));
         assertFalse(bike3.similar(criterion));
@@ -81,13 +81,13 @@ class LinearSearchTest {
 
     @Test
     void hashCodeTest() {
-        assertEquals(linearSearchOne.hashCode(), linearSearchTwo.hashCode());
-        assertNotEquals(linearSearchOne.hashCode(), linearSearchThree.hashCode());
+        assertEquals(multiSearchOne.hashCode(), multiSearchTwo.hashCode());
+        assertNotEquals(multiSearchOne.hashCode(), multiSearchThree.hashCode());
     }
 
     @Test
     void equals() {
-        assertEquals(linearSearchOne, linearSearchTwo);
-        assertNotEquals(linearSearchOne, linearSearchThree);
+        assertEquals(multiSearchOne, multiSearchTwo);
+        assertNotEquals(multiSearchOne, multiSearchThree);
     }
 }
