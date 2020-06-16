@@ -1,9 +1,9 @@
 package ua.i.mail100.service;
 
-import ua.i.mail100.representative.BikeCollection;
 import ua.i.mail100.model.BikeType;
 import ua.i.mail100.model.ElectroBike;
 import ua.i.mail100.model.MechanicBike;
+import ua.i.mail100.representative.BikeCollection;
 
 import java.util.List;
 
@@ -22,30 +22,85 @@ public class BikeParser {
             }
 
             String brand = parts[0].substring(type.toString().length() + 1);
-            Integer weightInGrams = null;
-            Boolean isLights = null;
             String color = parts[5].trim();
-            Integer price = Integer.valueOf(parts[6].trim());
+            Integer price = null;
+            String priceStr = parts[6].trim();
+            if (!priceStr.equals("")) {
+                price = Integer.valueOf(priceStr);
+            }
 
             if ((type == BikeType.SPEEDELEC) || (type == BikeType.E_BIKE)) {
-                Integer speedMaxInKmInHour = Integer.valueOf(parts[1].trim());
-                weightInGrams = Integer.valueOf(parts[2].trim());
-                isLights = (parts[3].trim().equals("true")) ? true : false;
-                Integer batteryCapacityInMAh = Integer.valueOf(parts[4].trim());
-                result.append(new ElectroBike(type, brand, weightInGrams,
-                        isLights, color, price, speedMaxInKmInHour, batteryCapacityInMAh));
+                ElectroBike bike = electroParse(parts);
+                bike.setType(type);
+                bike.setBrand(brand);
+                bike.setColor(color);
+                bike.setPrice(price);
+                result.append(bike);
             }
             if (type == BikeType.FOLDING_BIKE) {
-                Integer wheelSizeInInch = Integer.valueOf(parts[1].trim());
-                Integer gearNumber = Integer.valueOf(parts[2].trim());
-                weightInGrams = Integer.valueOf(parts[3].trim());
-                isLights = (parts[4].trim().equals("true")) ? true : false;
-                result.append(new MechanicBike(type, brand, weightInGrams,
-                        isLights, color, price, wheelSizeInInch, gearNumber));
+                MechanicBike bike = mechanicParse(parts);
+                bike.setType(type);
+                bike.setBrand(brand);
+                bike.setColor(color);
+                bike.setPrice(price);
+                result.append(bike);
             }
         }
         return result;
     }
-}
 
+    private static ElectroBike electroParse(String[] parts) {
+        Integer speedMaxInKmInHour = null;
+        String speedMaxInKmInHourStr = parts[1].trim();
+        if (!speedMaxInKmInHourStr.equals("")) {
+            speedMaxInKmInHour = Integer.valueOf(speedMaxInKmInHourStr);
+        }
+        Integer weightInGrams = null;
+        String weightInGramsStr = parts[2].trim();
+        if (!weightInGramsStr.equals("")) {
+            weightInGrams = Integer.valueOf(weightInGramsStr);
+        }
+        Boolean isLights = null;
+        String lightStr = parts[3].trim();
+        if (lightStr.equals("true")) {
+            isLights = true;
+        } else if (lightStr.equals("false")) {
+            isLights = false;
+        }
+        Integer batteryCapacityInMAh = null;
+        String batteryCapacityInMAhStr = parts[4].trim();
+        if (!batteryCapacityInMAhStr.equals("")) {
+            batteryCapacityInMAh = Integer.valueOf(batteryCapacityInMAhStr);
+        }
+        return new ElectroBike(null, null, weightInGrams,
+                isLights, null, null, speedMaxInKmInHour, batteryCapacityInMAh);
+    }
+
+    private static MechanicBike mechanicParse(String[] parts) {
+        Integer wheelSizeInInch = null;
+        String wheelSizeInInchStr = parts[1].trim();
+        if (!wheelSizeInInchStr.equals("")) {
+            wheelSizeInInch = Integer.valueOf(wheelSizeInInchStr);
+        }
+        Integer gearNumber = null;
+        String gearNumberStr = parts[2].trim();
+        if (!gearNumberStr.equals("")) {
+            gearNumber = Integer.valueOf(gearNumberStr);
+        }
+        Integer weightInGrams = null;
+        String weightInGramsStr = parts[3].trim();
+        if (!weightInGramsStr.equals("")) {
+            weightInGrams = Integer.valueOf(weightInGramsStr);
+        }
+        Boolean isLights = null;
+        String lightStr = parts[4].trim();
+        if (lightStr.equals("true")) {
+            isLights = true;
+        } else if (lightStr.equals("false")) {
+            isLights = false;
+        }
+        return new MechanicBike(null, null, weightInGrams,
+                isLights, null, null, wheelSizeInInch, gearNumber);
+    }
+}
 

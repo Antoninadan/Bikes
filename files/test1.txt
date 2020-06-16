@@ -13,3 +13,27 @@ SPEEDELEC EcoRide; 15; 8300; true; 15600; blue; 1055
 SPEEDELEC Smart; 40; 9600; false; 13000; brown; 1065
 E-BIKE Felt; 60; 28300; false; 9000; grey; 2229
 SPEEDELEC Freego; 55; 9000; false; 15800; grenadine; 1505
+FOLDING BIKE brand; 4; 5; 1; false; color; 3
+FOLDING BIKE bra; 265; 30; 17000; true; col; 456
+
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+
+
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+E-BIKE brand; 123; 45234; true; 123; rose; 141
+FOLDING BIKE br; 43; 34; 546; true; col; 45
+FOLDING BIKE икщ; 234; 234; 56; false; 234; 234
+SPEEDELEC 3; 3; 3; false; 3; 3; 3
+E-BIKE 4; 4; 4; true; 4; 4; 4
+E-BIKE eeee; 1; 1; true; 1; 1; 1
+E-BIKE eee; ; ; ; ; ; 
+FOLDING BIKE 2; ; ; 2; false; ; 

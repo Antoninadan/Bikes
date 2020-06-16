@@ -24,18 +24,6 @@ public class LinearSearch {
         return null;
     }
 
-    public BikeCollection findAllSimilarTo(Bike criterion) {
-        BikeCollection result = null;
-
-        List<Bike> findedBikes = bikeList.stream()
-                .filter(x -> (x.getType() == criterion.getType()))
-                .filter(x -> x.similar(criterion))
-                .collect(Collectors.toList());
-        if (!bikeList.isEmpty()) result = new BikeCollection(findedBikes);
-
-        return result;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;

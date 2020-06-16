@@ -159,7 +159,6 @@ class BikeTest {
         bikeFour.price = 11111111;
         bikeFour.color = "color1";
 
-        // TODO
         assertNotEquals(bikeOne, bikeThree);
         assertNotEquals(bikeOne, bikeFour);
     }

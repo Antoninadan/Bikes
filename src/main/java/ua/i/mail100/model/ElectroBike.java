@@ -18,13 +18,13 @@ public class ElectroBike extends Bike {
         String lightsInfo = (isLights != null) ? (isLights ? " and head/tail light" : " and no head/tail light") : "";
         String brandInfo = (brand != null) ? brand : "";
         String batteryCapacityInMAhInfo = (batteryCapacityInMAh != null) ? (" with " + batteryCapacityInMAh + " mAh battery") : "";
-        String priceInfo = (price != null) ? ("Price: " + price + " euros.") : "";
+        String priceInfo = (price != null) ? (Settings.LINE_SEP + "Price: " + price + " euros." ) : "";
 
         return type.toString() + " " +
                 brandInfo +
                 batteryCapacityInMAhInfo +
                 lightsInfo +
-                "." + Settings.LINE_SEP +
+                "." +
                 priceInfo;
     }
 
@@ -37,11 +37,8 @@ public class ElectroBike extends Bike {
         String colorStr = (color != null) ? (color) : "";
         String priceStr = (price != null) ? (price.toString()) : "";
 
-        return Settings.LINE_SEP + type.toString() + " " +
+        return type.toString() + " " +
                 brand + "; " +
-                // TODO add to test parce
-                // TODO add to test this
-                // TODO mechanik also
                 speedMaxInKmInHourStr + "; " +
                 weightInGramsStr  + "; " +
                 isLightsStr + "; " +

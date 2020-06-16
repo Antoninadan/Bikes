@@ -70,23 +70,25 @@ class ElectroBikeTest {
         assertTrue(bike6.similar(bike1));
     }
 
-
     @Test
     void toStringTest() {
-        String expected = "E-BIKE brand1 with 123 mAh battery and head/tail light." + LINE_SEP +
+        String expected1 = "E-BIKE brand1 with 123 mAh battery and head/tail light." + LINE_SEP +
                 "Price: 11 euros.";
-        String actual = bike1.toString();
-        assertEquals(expected, actual);
+        String actual1 = bike1.toString();
+        assertEquals(expected1, actual1);
+
+        String expected2 = "E-BIKE brand1.";
+        String actual2 = bike4.toString();
+        assertEquals(expected2, actual2);
     }
 
     @Test
-    // TODO Mechan analog
     void toStringForWrite() {
-        String expected1 = LINE_SEP + "E-BIKE brand1; 123; 45234; true; 123; rose; 11";
+        String expected1 = "E-BIKE brand1; 123; 45234; true; 123; rose; 11";
         String actual1 = bike1.toStringForWrite();
         assertEquals(expected1, actual1);
 
-        String expected2 = LINE_SEP + "E-BIKE brand1; ; ; ; ; ; ";
+        String expected2 = "E-BIKE brand1; ; ; ; ; ; ";
         String actual2 = bike4.toStringForWrite();
         assertEquals(expected2, actual2);
     }

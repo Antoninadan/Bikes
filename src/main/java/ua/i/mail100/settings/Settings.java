@@ -7,5 +7,5 @@ public class Settings {
     public static final String FILE_SEP = System.getProperty("file.separator");
     public static final String FILES_DIR = MAIN_DIR + FILE_SEP + "files";
 
-    public static final int SHOW_BIKES_PER_PAGE = 400;
+    public static final int SHOW_BIKES_PER_PAGE = 200;
 }

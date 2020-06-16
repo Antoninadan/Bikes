@@ -20,25 +20,32 @@ public class MechanicBike extends Bike {
         String lightsInfo = (isLights != null) ? (isLights ? " and head/tail light" : " and no head/tail light") : "";
         String brandInfo = (brand != null) ? brand : "";
         String gearNumberInfo = (gearNumber != null) ? (" with " + gearNumber + " gear(s)") : "";
-        String priceInfo = (price != null) ? ("Price: " + price + " euros.") : "";
+        String priceInfo = (price != null) ? (Settings.LINE_SEP + "Price: " + price + " euros.") : "";
 
         return type.toString() + " " +
                 brandInfo +
                 gearNumberInfo +
                 lightsInfo +
-                "." + Settings.LINE_SEP +
+                "." +
                 priceInfo;
     }
 
     public String toStringForWrite() {
-        return Settings.LINE_SEP + type.toString() + " " +
+        String wheelSizeInInchStr = (wheelSizeInInch != null) ? (wheelSizeInInch.toString()) : "";
+        String gearNumberStr = (gearNumber != null) ? (gearNumber.toString()) : "";
+        String weightInGramsStr = (weightInGrams != null) ? (weightInGrams.toString()) : "";
+        String isLightsStr = (isLights != null) ? (isLights.toString()) : "";
+        String colorStr = (color != null) ? (color) : "";
+        String priceStr = (price != null) ? (price.toString()) : "";
+
+        return type.toString() + " " +
                 brand + "; " +
-                wheelSizeInInch + "; " +
-                gearNumber + "; " +
-                weightInGrams + "; " +
-                isLights + "; " +
-                color + "; " +
-                price;
+                wheelSizeInInchStr + "; " +
+                gearNumberStr + "; " +
+                weightInGramsStr + "; " +
+                isLightsStr + "; " +
+                colorStr + "; " +
+                priceStr;
     }
 
     @Override

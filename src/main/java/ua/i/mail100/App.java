@@ -14,6 +14,8 @@ import ua.i.mail100.util.FileUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,16 +33,13 @@ public class App {
             "2 – Input speedelec bike parameters" + Settings.LINE_SEP +
             "3 – Input e-bike bike parameters" + Settings.LINE_SEP;
 
-    // TODO fix press any key
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         final String fileName = args[0];
-
         List<String> readedFileStrings = FileUtil.read(Settings.FILES_DIR, fileName);
         BikeCollection savedBikes = BikeParser.parse(readedFileStrings);
-
         BikeCollection newBikes = new BikeCollection();
-
         String line = "-";
+
         Pattern pattern = Pattern.compile("([1-7][1-7]*)");
         Matcher matcher = pattern.matcher(line);
         while (!matcher.matches()) {
@@ -48,19 +47,21 @@ public class App {
             System.out.println(MAIN_MENU);
             line = bufferedReader.readLine();
             if (line.equals("1")) {
+                printFilePath(fileName);
                 showBikesPerPages(savedBikes);
             } else if (line.equals("2")) {
                 newBikes.append(MechanikBikeInputer.inputFoldingBike());
+                System.out.println("Successfully add FOLDING BIKE");
             } else if (line.equals("3")) {
                 newBikes.append(ElectroBikeInputer.inputSpeedelec());
+                System.out.println("Successfully add SPEEDELEC");
             } else if (line.equals("4")) {
                 newBikes.append(ElectroBikeInputer.inputEBike());
+                System.out.println("Successfully add E-BIKE");
             } else if (line.equals("5")) {
                 showFirstBikeByCriterion(savedBikes, args[1]);
             } else if (line.equals("6")) {
-                FileUtil.appendTo(newBikes.getListForWrite(), Settings.FILES_DIR, fileName);
-                savedBikes = savedBikes.union(newBikes);
-                newBikes.clear();
+                savedBikes = saveToFile(fileName, savedBikes, newBikes);
             } else if (line.equals("7")) {
                 exit(newBikes, fileName);
             } else {
@@ -69,21 +70,22 @@ public class App {
         }
     }
 
+    private static void printFilePath(String fileName) {
+        Path filePath = Paths.get(Settings.FILES_DIR + Settings.FILE_SEP + fileName);
+        System.out.println("File path: " + filePath + Settings.LINE_SEP);
+    }
+
     private static void showBikesPerPages(BikeCollection bikes) throws IOException {
         List<BikeCollection> bikeCollectionList = bikes.dividePerRecords(Settings.SHOW_BIKES_PER_PAGE);
         int count = 0;
-
-        while (true) {
+        while (bikeCollectionList.size() - 1 > count) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            if (bikeCollectionList.size() - 1 >= count) {
-                bikeCollectionList.get(count).print();
-            } else {
-                return;
-            }
+            bikeCollectionList.get(count).print();
             System.out.println(Settings.LINE_SEP + "Press any key to continue ");
             bufferedReader.readLine();
             count++;
         }
+        bikeCollectionList.get(count).print();
     }
 
     private static void showFirstBikeByCriterion(BikeCollection bikes, String searchType) throws IOException {
@@ -97,14 +99,19 @@ public class App {
             line = bufferedReader.readLine();
             if (line.equals("1")) {
                 criterion = MechanikBikeInputer.inputFoldingBike();
+                showCriterionAndOneFinded(bikes, criterion, searchType);
+                return;
             } else if (line.equals("2")) {
                 criterion = ElectroBikeInputer.inputSpeedelec();
+                showCriterionAndOneFinded(bikes, criterion, searchType);
+                return;
             } else if (line.equals("3")) {
                 criterion = ElectroBikeInputer.inputEBike();
+                showCriterionAndOneFinded(bikes, criterion, searchType);
+                return;
             } else {
                 System.out.println("Bad command ");
             }
-            showCriterionAndOneFinded(bikes, criterion, searchType);
         }
     }
 
@@ -126,7 +133,7 @@ public class App {
         if (finded != null) {
             System.out.println(Settings.LINE_SEP + "Results: " + Settings.LINE_SEP + finded);
         } else {
-            System.out.println("Results: 0");
+            System.out.println(Settings.LINE_SEP + "Results: 0");
         }
     }
 
@@ -152,5 +159,26 @@ public class App {
                 }
             }
         }
+    }
+
+    public static BikeCollection saveToFile(String fileName, BikeCollection savedBikes, BikeCollection newBikes)
+            throws IOException {
+        if (newBikes.getBikes().size() == 0) {
+            System.out.println("You don't have unsaved records");
+        } else {
+            printFilePath(fileName);
+            List<String> listToWrite = newBikes.getListForWrite();
+//            int size = listToWrite.size();
+            if(!FileUtil.isLineSeparatorAtEnd(Settings.FILES_DIR, fileName)) {
+                String lastRecordText = listToWrite.get(0) + Settings.LINE_SEP;
+                listToWrite.remove(0);
+                listToWrite.add(0, lastRecordText);
+            }
+            FileUtil.appendTo(newBikes.getListForWrite(), Settings.FILES_DIR, fileName);
+            savedBikes = savedBikes.union(newBikes);
+            newBikes.clear();
+            System.out.println("Successfully saved");
+        }
+        return savedBikes;
     }
 }

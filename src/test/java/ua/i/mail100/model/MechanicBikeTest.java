@@ -70,16 +70,24 @@ class MechanicBikeTest {
 
     @Test
     void toStringTest() {
-        String expected = "FOLDING BIKE brand1 with 123 gear(s) and no head/tail light." + LINE_SEP +
+        String expected1 = "FOLDING BIKE brand1 with 123 gear(s) and no head/tail light." + LINE_SEP +
                 "Price: 11 euros.";
-        String actual = bike1.toString();
-        assertEquals(expected, actual);
+        String actual1 = bike1.toString();
+        assertEquals(expected1, actual1);
+
+        String expected2 = "FOLDING BIKE brand1.";
+        String actual2 = bike4.toString();
+        assertEquals(expected2, actual2);
     }
 
     @Test
     void toStringForWrite() {
-        String expected = "FOLDING BIKE brand1; 123; 123; 45234; false; rose; 11";
-        String actual = bike1.toStringForWrite();
-        assertEquals(expected, actual);
+        String expected1 = "FOLDING BIKE brand1; 123; 123; 45234; false; rose; 11";
+        String actual1 = bike1.toStringForWrite();
+        assertEquals(expected1, actual1);
+
+        String expected2 = "FOLDING BIKE brand1; ; ; ; ; ; ";
+        String actual2 = bike4.toStringForWrite();
+        assertEquals(expected2, actual2);
     }
 }

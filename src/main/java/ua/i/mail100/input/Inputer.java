@@ -84,7 +84,7 @@ public class Inputer {
                 if (line.length() > 0) {
                     Matcher matcher = pattern.matcher(line);
                     if (matcher.matches()) {
-                        resultReturn = Boolean.parseBoolean(line);
+                        resultReturn = (line.equals("1") ? true : false);
                         temp = 1;
                     } else {
                         line = "-";
