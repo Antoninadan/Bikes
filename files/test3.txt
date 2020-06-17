@@ -238,3 +238,11 @@ SPEEDELEC EcoRide; 15; 8300; true; 15600; blue; 1055
 SPEEDELEC Smart; 40; 9600; false; 13000; brown; 1065
 E-BIKE Felt; 60; 28300; false; 9000; grey; 2229
 SPEEDELEC Freego; 55; 9000; false; 15800; grenadine; 1505
+SPEEDELEC 234; 1; 1; true; ; 1; 1
+
+FOLDING BIKE 1; 1; 1; 1; true; 1; 1
+FOLDING BIKE 1; 1; 1; 1; true; 1; 1
+SPEEDELEC 1; 1; 1; true; 1; 1; 1
+SPEEDELEC 1; 1; 1; true; 1; 1; 1
+SPEEDELEC 1; 1; 1; true; 1; 1; 1
+FOLDING BIKE 1; 1; 1; 1; true; 1; 1

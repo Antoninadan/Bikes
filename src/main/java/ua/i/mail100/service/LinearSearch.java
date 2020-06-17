@@ -5,7 +5,6 @@ import ua.i.mail100.representative.BikeCollection;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class LinearSearch {
     private List<Bike> bikeList;

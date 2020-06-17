@@ -1,0 +1,5 @@
+E-BIKE brand1; 123; 45234; true; 123; rose; 3
+E-BIKE brand1; 123; 45234; true; 123; rose; 3
+E-BIKE brand1; ; ; ; ; ; 4
+E-BIKE brand1; 123; 45234; true; 123; rose; 3
+E-BIKE brand1; ; ; ; ; ; 4

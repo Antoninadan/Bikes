@@ -61,7 +61,7 @@ public class App {
             } else if (line.equals("5")) {
                 showFirstBikeByCriterion(savedBikes, args[1]);
             } else if (line.equals("6")) {
-                savedBikes = saveToFile(fileName, savedBikes, newBikes);
+                savedBikes = saveToFile(Settings.FILES_DIR, fileName, savedBikes, newBikes);
             } else if (line.equals("7")) {
                 exit(newBikes, fileName);
             } else {
@@ -131,9 +131,9 @@ public class App {
             finded = multiSearch.findOneSimilarTo(criterion);
         }
         if (finded != null) {
-            System.out.println(Settings.LINE_SEP + "Results: " + Settings.LINE_SEP + finded);
+            System.out.println(Settings.LINE_SEP + "Result: " + Settings.LINE_SEP + finded);
         } else {
-            System.out.println(Settings.LINE_SEP + "Results: 0");
+            System.out.println(Settings.LINE_SEP + "Result: -");
         }
     }
 
@@ -161,20 +161,19 @@ public class App {
         }
     }
 
-    public static BikeCollection saveToFile(String fileName, BikeCollection savedBikes, BikeCollection newBikes)
+    public static BikeCollection saveToFile(String pathName, String fileName, BikeCollection savedBikes, BikeCollection newBikes)
             throws IOException {
         if (newBikes.getBikes().size() == 0) {
             System.out.println("You don't have unsaved records");
         } else {
             printFilePath(fileName);
             List<String> listToWrite = newBikes.getListForWrite();
-//            int size = listToWrite.size();
-            if(!FileUtil.isLineSeparatorAtEnd(Settings.FILES_DIR, fileName)) {
-                String lastRecordText = listToWrite.get(0) + Settings.LINE_SEP;
+            if (!FileUtil.isLineSeparatorAtEnd(pathName, fileName)) {
+                String firstRecordText = Settings.LINE_SEP + listToWrite.get(0);
                 listToWrite.remove(0);
-                listToWrite.add(0, lastRecordText);
+                listToWrite.add(0, firstRecordText);
             }
-            FileUtil.appendTo(newBikes.getListForWrite(), Settings.FILES_DIR, fileName);
+            FileUtil.appendTo(listToWrite, pathName, fileName);
             savedBikes = savedBikes.union(newBikes);
             newBikes.clear();
             System.out.println("Successfully saved");

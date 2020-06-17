@@ -1,6 +1,5 @@
 package ua.i.mail100.service.multisearch;
 
-import ua.i.mail100.input.Inputer;
 import ua.i.mail100.model.Bike;
 
 import java.util.List;

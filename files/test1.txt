@@ -37,3 +37,7 @@ E-BIKE 4; 4; 4; true; 4; 4; 4
 E-BIKE eeee; 1; 1; true; 1; 1; 1
 E-BIKE eee; ; ; ; ; ; 
 FOLDING BIKE 2; ; ; 2; false; ; 
+FOLDING BIKE folding; 4; 5; 1; true; 2; 3
+SPEEDELEC sped; 4; 1; true; 5; 2; 3
+E-BIKE ebike; 4; 1; true; 5; 2; 3
+FOLDING BIKE cdvf; 546; 45; 2147483647; true; ; 546546

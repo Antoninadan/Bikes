@@ -11,13 +11,17 @@ class InputerTest {
     Inputer inputerTwo;
     Inputer inputerThree;
     Inputer inputerFour;
+    Inputer inputerFive;
+    Inputer inputerSix;
 
     @BeforeEach
     void setUp() {
-       inputerOne = new Inputer("1", InputedType.STRING);
-       inputerTwo = new Inputer("1", InputedType.STRING);
-       inputerThree = new Inputer("1", InputedType.STRING_NOT_EMPTY);
-       inputerFour = new Inputer("2", InputedType.STRING);
+        inputerOne = new Inputer("1", InputedType.STRING);
+        inputerTwo = new Inputer("1", InputedType.STRING);
+        inputerThree = new Inputer("1", InputedType.STRING_NOT_EMPTY);
+        inputerFour = new Inputer("2", InputedType.STRING);
+        inputerFive = new Inputer("3", InputedType.INTEGER);
+        inputerSix = new Inputer("3", InputedType.BOOLEAN);
     }
 
     @Test

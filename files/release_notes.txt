@@ -1,0 +1,12 @@
+Release notes:
+1. Working files are in user.dir/files. You can change settings - "src\main\java\ua\i\mail100\settings\Settings.java"
+2. Complete arguments (<file name, for example "ecobike.txt"> <"search1" or "search2" or "search3">) for running the program (App).
+3. Implemented 3 search one bike options:
+3.1. "search1" - written by myself search with usage of extra collections
+3.2. "search2" - written by myself linear search
+3.3. "search3" - written by myself multithreading search
+4. Due to lack of requirements some features implemented in such way:
+4.1 If you need to input empty parameter (for example, empty bike color) - press "Enter"
+4.2. Search case sensitive.
+4.3. Search only on saved bikes.
+4.4. Show the entire EcoBike catalog only on saved bikes.

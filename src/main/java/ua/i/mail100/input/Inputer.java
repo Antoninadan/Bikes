@@ -65,7 +65,7 @@ public class Inputer {
                     }
                 } else result = null;
             } catch (NumberFormatException e) {
-                System.out.println("Bad format - input integer >=0 e.g. 10");
+                System.out.println("Bad format - input integer [0, 2147483647] e.g. 10");
             } catch (NullPointerException e) {
                 return result;
             }
@@ -73,7 +73,7 @@ public class Inputer {
         return result;
     }
 
-    private static Boolean inputBoolean() throws IOException {
+    public Boolean inputBoolean() throws IOException {
         Boolean resultReturn = null;
         Integer temp = -1;
         while (temp != null && temp == -1) {
